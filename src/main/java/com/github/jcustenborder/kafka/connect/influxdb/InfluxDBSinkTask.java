@@ -18,7 +18,7 @@ package com.github.jcustenborder.kafka.connect.influxdb;
 import com.github.jcustenborder.kafka.connect.utils.VersionUtil;
 // import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
-import com.google.common.collect.ImmutableMap;
+// import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import org.apache.kafka.connect.data.Decimal;
 // import org.apache.kafka.connect.data.Field;
@@ -29,14 +29,17 @@ import org.apache.kafka.connect.errors.DataException;
 import org.apache.kafka.connect.sink.SinkRecord;
 import org.apache.kafka.connect.sink.SinkTask;
 import org.influxdb.InfluxDB;
-import org.influxdb.dto.BatchPoints;
-import org.influxdb.dto.Point;
+//import org.influxdb.dto.BatchPoints;
+//import org.influxdb.dto.Point;
 
-import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.ArrayList;
 
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
@@ -131,7 +134,6 @@ public class InfluxDBSinkTask extends SinkTask {
       } catch (ParseException e) {
         e.printStackTrace();
       }
-      jcon = (JSONObject) jcon.get("data");
       System.out.println("THIS IS VALUE OF JSONObject : " + jcon);
 
       String measurement = (String) jcon.get("measurement");
@@ -142,7 +144,7 @@ public class InfluxDBSinkTask extends SinkTask {
 
       JSONObject tagField = null;
       try {
-        tagField = (JSONObject) jParser.parse((String) jcon.get("tags"));
+        tagField = (JSONObject) jParser.parse(jcon.get("tags").toString());
       } catch (ParseException e) {
         e.printStackTrace();
       }
@@ -151,19 +153,15 @@ public class InfluxDBSinkTask extends SinkTask {
 
       JSONObject dataField = null;
       try {
-        dataField = (JSONObject) jParser.parse((String) jcon.get("fields"));
+        dataField = (JSONObject) jParser.parse(jcon.get("fields").toString());
       } catch (ParseException e) {
         e.printStackTrace();
       }
       System.out.println("THIS IS VALUE OF Data Fields : " + dataField);
-      ArrayList<String> keys = new ArrayList<String> (dataField.keySet());
+      ArrayList<String> keys = new ArrayList<String>(dataField.keySet());
       System.out.println("THIS IS VALUE OF Data Fields KEY SET : " + dataField.keySet());
-      for(String key : keys){
-        if(dataField.get(key) == "ct"){
-          // parsing creation time
-        }else{
-
-        }
+      for (String key : keys) {
+        System.out.println("THIS IS VALUE OF Data Fields KEYs : " + key);
       }
 
 //      Field tagField = value.schema().field("tags");
@@ -189,9 +187,9 @@ public class InfluxDBSinkTask extends SinkTask {
 //        log.trace("put() - tags = {}", Joiner.on(", ").withKeyValueSeparator("=").join(tags));
 //      }
 
-      final long time = record.timestamp();
-
-      PointKey key = PointKey.of(measurement, time, tag);
+//      final long time = record.timestamp();
+//
+//      PointKey key = PointKey.of(measurement, time, tag);
 //      Map<String, Object> fields = builders.computeIfAbsent(key, pointKey -> new HashMap<>(100));
 
 
