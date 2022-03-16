@@ -25,17 +25,17 @@ import java.util.Map;
 class PointKey implements Comparable<PointKey> {
   public final String measurement;
   public final long time;
-  public final Map<String, String> tags;
+  public final String tag;
 
 
-  private PointKey(String measurement, long time, Map<String, String> tags) {
+  private PointKey(String measurement, long time, String tag) {
     this.measurement = measurement;
-    this.tags = ImmutableMap.copyOf(tags);
+    this.tag = tag;
     this.time = time;
   }
 
-  public static PointKey of(String measurement, long time, Map<String, String> tags) {
-    return new PointKey(measurement, time, tags);
+  public static PointKey of(String measurement, long time,String tag) {
+    return new PointKey(measurement, time, tag);
   }
 
   @Override
@@ -43,7 +43,7 @@ class PointKey implements Comparable<PointKey> {
     return MoreObjects.toStringHelper(this)
         .add("measurement", this.measurement)
         .add("time", this.time)
-        .add("tags", this.tags)
+        .add("tag", this.tag)
         .toString();
   }
 
@@ -52,13 +52,13 @@ class PointKey implements Comparable<PointKey> {
     return ComparisonChain.start()
         .compare(this.measurement, that.measurement)
         .compare(this.time, that.time)
-        .compare(Objects.hashCode(this.tags), Objects.hashCode(that.tags))
+        .compare(this.tag, that.tag)
         .result();
   }
 
   @Override
   public int hashCode() {
-    return Objects.hashCode(this.measurement, this.time, this.tags);
+    return Objects.hashCode(this.measurement, this.time, this.tag);
   }
 
   @Override

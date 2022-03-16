@@ -16,28 +16,31 @@
 package com.github.jcustenborder.kafka.connect.influxdb;
 
 import com.github.jcustenborder.kafka.connect.utils.VersionUtil;
-import com.google.common.base.Joiner;
+// import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import org.apache.kafka.connect.data.Decimal;
-import org.apache.kafka.connect.data.Field;
+// import org.apache.kafka.connect.data.Field;
 import org.apache.kafka.connect.data.Schema;
 import org.apache.kafka.connect.data.SchemaBuilder;
-import org.apache.kafka.connect.data.Struct;
+//import org.apache.kafka.connect.data.Struct;
 import org.apache.kafka.connect.errors.DataException;
 import org.apache.kafka.connect.sink.SinkRecord;
 import org.apache.kafka.connect.sink.SinkTask;
 import org.influxdb.InfluxDB;
 import org.influxdb.dto.BatchPoints;
 import org.influxdb.dto.Point;
+
+import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+
+import org.json.simple.parser.JSONParser;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 public class InfluxDBSinkTask extends SinkTask {
   private static final Logger log = LoggerFactory.getLogger(InfluxDBSinkTask.class);
@@ -54,8 +57,6 @@ public class InfluxDBSinkTask extends SinkTask {
   public void start(Map<String, String> settings) {
     this.config = new InfluxDBSinkConnectorConfig(settings);
     this.influxDB = this.factory.create(this.config);
-
-
   }
 
   static final Schema TAG_SCHEMA = SchemaBuilder.map(Schema.STRING_SCHEMA, Schema.STRING_SCHEMA).build();
@@ -78,85 +79,159 @@ public class InfluxDBSinkTask extends SinkTask {
 
   @Override
   public void put(Collection<SinkRecord> records) {
+    /**
+     * Sink Records Format
+     *
+     * [
+     *   SinkRecord{
+     *     kafkaOffset=0,
+     *     timestampType=CreateTime
+     *   }
+     *   ConnectRecord{
+     *     topic='influx-test3',
+     *     kafkaPartition=0,
+     *     key=null,
+     *     keySchema=null,
+     *     value=Struct{
+     *       measurement=kafka_ae,
+     *       tags=kafka_cnt,
+     *       fields={
+     *         "TAG_ID": 8065243138,
+     *         "POS_TYPE": 1,
+     *         "POS_TIME": "2021-10-14 08:53:30.096",
+     *         "XPOS": 42.7068856917,
+     *         "YPOS": 2.3179656097
+     *
+     *       }
+     *     },
+     *     valueSchema=Schema{
+     *       STRUCT
+     *     },
+     *     timestamp=1647393968223,
+     *     headers=ConnectHeaders(headers=)
+     *   },
+     *   SinkRecord{
+     *     kafkaOffset=0,
+     *     ...
+     * ]
+     */
     if (null == records || records.isEmpty()) {
       return;
     }
+    JSONParser jParser = new JSONParser();
     Map<PointKey, Map<String, Object>> builders = new HashMap<>(records.size());
+
+    System.out.println("**************** \n \n \n \n \n \n****************** \n \n \n \n HERE \n **************** \n");
+    System.out.println("THIS IS VALUE OF RECORDS : " + String.valueOf(records));
     for (SinkRecord record : records) {
-      final Struct value = (Struct) record.value();
+      System.out.println("THIS IS VALUE OF String : " + record.value().toString());
+      JSONObject jcon = null;
+      try {
+        jcon = (JSONObject) jParser.parse(record.value().toString());
+      } catch (ParseException e) {
+        e.printStackTrace();
+      }
+      jcon = (JSONObject) jcon.get("data");
+      System.out.println("THIS IS VALUE OF JSONObject : " + jcon);
 
-      String measurement = value.getString("measurement");
-
-      if (Strings.isNullOrEmpty("measurement")) {
+      String measurement = (String) jcon.get("measurement");
+      System.out.println("THIS IS VALUE OF MEASUREMENT : " + measurement);
+      if (Strings.isNullOrEmpty(measurement.toString())) {
         throw new DataException("measurement is a required field.");
       }
 
-      final Map<String, String> tags;
-      Field tagField = value.schema().field("tags");
-      log.trace("put() - Looking for tags");
-      if (null == tagField) {
-        log.trace("put() - tags field not found.");
-        tags = ImmutableMap.of();
-      } else if (TAG_SCHEMA.equals(tagField.schema()) || TAG_OPTIONAL_SCHEMA.equals(tagField.schema())) {
-        log.trace("put() - tags field found.");
-        final Map<String, String> t = value.getMap(tagField.name());
-        if (null != t) {
-          tags = ImmutableMap.copyOf(t);
-        } else {
-          tags = ImmutableMap.of();
+      JSONObject tagField = null;
+      try {
+        tagField = (JSONObject) jParser.parse((String) jcon.get("tags"));
+      } catch (ParseException e) {
+        e.printStackTrace();
+      }
+      String tag = (String) tagField.get("container");
+      System.out.println("THIS IS VALUE OF CONTAINER : " + tag);
+
+      JSONObject dataField = null;
+      try {
+        dataField = (JSONObject) jParser.parse((String) jcon.get("fields"));
+      } catch (ParseException e) {
+        e.printStackTrace();
+      }
+      System.out.println("THIS IS VALUE OF Data Fields : " + dataField);
+      ArrayList<String> keys = new ArrayList<String> (dataField.keySet());
+      System.out.println("THIS IS VALUE OF Data Fields KEY SET : " + dataField.keySet());
+      for(String key : keys){
+        if(dataField.get(key) == "ct"){
+          // parsing creation time
+        }else{
+
         }
-      } else {
-        log.trace("put() - tags field found but doesn't match {} or {}.", TAG_SCHEMA, TAG_OPTIONAL_SCHEMA);
-        tags = ImmutableMap.of();
       }
 
-      if (log.isTraceEnabled()) {
-        log.trace("put() - tags = {}", Joiner.on(", ").withKeyValueSeparator("=").join(tags));
-      }
+//      Field tagField = value.schema().field("tags");
+//      log.trace("put() - Looking for tags");
+//      if (null == tagField) {
+//        log.trace("put() - tags field not found.");
+//        tags = ImmutableMap.of();
+//      } else if (TAG_SCHEMA.equals(tagField.schema()) || TAG_OPTIONAL_SCHEMA.equals(tagField.schema())) {
+//        log.trace("put() - tags field found.");
+//        final Map<String, String> t = value.getMap(tagField.name());
+//        if (null != t) {
+//          tags = ImmutableMap.copyOf(t);
+//        } else {
+//          tags = ImmutableMap.of();
+//          System.out.println();
+//        }
+//      } else {
+//        log.trace("put() - tags field found but doesn't match {} or {}.", TAG_SCHEMA, TAG_OPTIONAL_SCHEMA);
+//        tags = ImmutableMap.of();
+//      }
+//
+//      if (log.isTraceEnabled()) {
+//        log.trace("put() - tags = {}", Joiner.on(", ").withKeyValueSeparator("=").join(tags));
+//      }
 
       final long time = record.timestamp();
 
-      PointKey key = PointKey.of(measurement, time, tags);
-      Map<String, Object> fields = builders.computeIfAbsent(key, pointKey -> new HashMap<>(100));
+      PointKey key = PointKey.of(measurement, time, tag);
+//      Map<String, Object> fields = builders.computeIfAbsent(key, pointKey -> new HashMap<>(100));
 
 
-      for (Field field : value.schema().fields()) {
-        if (SKIP_FIELDS.contains(field.name())) {
-          log.trace("put() - Skipping field '{}'", field.name());
-          continue;
-        }
-        log.trace("put() - Processing field '{}':{}:'{}'", field.name(), field.schema().type(), field.schema().name());
-
-        if (INCLUDE_LOGICAL.contains(field.schema().name()) || INCLUDE_TYPES.contains(field.schema().type())) {
-          final Object fieldValue = value.get(field);
-          if (null != fieldValue) {
-            fields.put(field.name(), fieldValue);
-          }
-        } else {
-          log.trace("put() - Ignoring field '{}':{}:'{}'", field.name(), field.schema().type(), field.schema().name());
-        }
-      }
+//      for (Field field : value.schema().fields()) {
+//        if (SKIP_FIELDS.contains(field.name())) {
+//          log.trace("put() - Skipping field '{}'", field.name());
+//          continue;
+//        }
+//        log.trace("put() - Processing field '{}':{}:'{}'", field.name(), field.schema().type(), field.schema().name());
+//
+//        if (INCLUDE_LOGICAL.contains(field.schema().name()) || INCLUDE_TYPES.contains(field.schema().type())) {
+//          final Object fieldValue = value.get(field);
+//          if (null != fieldValue) {
+//            fields.put(field.name(), fieldValue);
+//          }
+//        } else {
+//          log.trace("put() - Ignoring field '{}':{}:'{}'", field.name(), field.schema().type(), field.schema().name());
+//        }
+//      }
     }
 
-    BatchPoints.Builder batchBuilder = BatchPoints.database(this.config.database)
-        .consistency(this.config.consistencyLevel);
-
-    for (Map.Entry<PointKey, Map<String, Object>> values : builders.entrySet()) {
-      final Point.Builder builder = Point.measurement(values.getKey().measurement);
-      builder.time(values.getKey().time, this.config.precision);
-      if (null != values.getKey().tags || values.getKey().tags.isEmpty()) {
-        builder.tag(values.getKey().tags);
-      }
-      builder.fields(values.getValue());
-      Point point = builder.build();
-      if (log.isTraceEnabled()) {
-        log.trace("put() - Adding point {}", point.toString());
-      }
-      batchBuilder.point(point);
-    }
-
-    BatchPoints batch = batchBuilder.build();
-    this.influxDB.write(batch);
+//    BatchPoints.Builder batchBuilder = BatchPoints.database(this.config.database)
+//        .consistency(this.config.consistencyLevel);
+//
+//    for (Map.Entry<PointKey, Map<String, Object>> values : builders.entrySet()) {
+//      final Point.Builder builder = Point.measurement(measurement);
+//      builder.time(values.getKey().time, this.config.precision);
+//      if (null != values.getKey().tags || values.getKey().tags.isEmpty()) {
+//        builder.tag(values.getKey().tags);
+//      }
+//      builder.fields(values.getValue());
+//      Point point = builder.build();
+//      if (log.isTraceEnabled()) {
+//        log.trace("put() - Adding point {}", point.toString());
+//      }
+//      batchBuilder.point(point);
+//    }
+//
+//    BatchPoints batch = batchBuilder.build();
+//    this.influxDB.write(batch);
   }
 
 

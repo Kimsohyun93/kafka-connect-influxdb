@@ -15,7 +15,7 @@
  */
 package com.github.jcustenborder.kafka.connect.influxdb;
 
-import com.github.jcustenborder.kafka.connect.utils.VersionUtil;
+// import com.github.jcustenborder.kafka.connect.utils.VersionUtil;
 import com.github.jcustenborder.kafka.connect.utils.config.Description;
 import com.github.jcustenborder.kafka.connect.utils.config.DocumentationImportant;
 import org.apache.kafka.common.config.ConfigDef;
@@ -33,7 +33,8 @@ import java.util.Map;
 public class InfluxDBSourceConnector extends SourceConnector {
   @Override
   public String version() {
-    return VersionUtil.version(this.getClass());
+    // return VersionUtil.version(this.getClass());
+    return "1.0.0";
   }
 
   Map<String, String> settings;

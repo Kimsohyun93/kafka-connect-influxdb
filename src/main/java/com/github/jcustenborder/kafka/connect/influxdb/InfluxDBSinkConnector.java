@@ -15,7 +15,7 @@
  */
 package com.github.jcustenborder.kafka.connect.influxdb;
 
-import com.github.jcustenborder.kafka.connect.utils.VersionUtil;
+// import com.github.jcustenborder.kafka.connect.utils.VersionUtil;
 import com.github.jcustenborder.kafka.connect.utils.config.Description;
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
@@ -38,7 +38,8 @@ public class InfluxDBSinkConnector extends SinkConnector {
 
   @Override
   public String version() {
-    return VersionUtil.version(this.getClass());
+    //return VersionUtil.version(this.getClass());
+    return "1.0.0";
   }
 
   Map<String, String> settings;
