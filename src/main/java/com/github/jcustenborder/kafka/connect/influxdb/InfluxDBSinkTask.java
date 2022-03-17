@@ -16,15 +16,15 @@
 package com.github.jcustenborder.kafka.connect.influxdb;
 
 import com.github.jcustenborder.kafka.connect.utils.VersionUtil;
-import com.google.common.base.Joiner;
+//import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
-import org.apache.kafka.connect.data.Decimal;
-import org.apache.kafka.connect.data.Field;
+//import com.google.common.collect.ImmutableMap;
+//import com.google.common.collect.ImmutableSet;
+//import org.apache.kafka.connect.data.Decimal;
+//import org.apache.kafka.connect.data.Field;
 import org.apache.kafka.connect.data.Schema;
 import org.apache.kafka.connect.data.SchemaBuilder;
-import org.apache.kafka.connect.data.Struct;
+//import org.apache.kafka.connect.data.Struct;
 import org.apache.kafka.connect.errors.DataException;
 import org.apache.kafka.connect.sink.SinkRecord;
 import org.apache.kafka.connect.sink.SinkTask;
@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
+// import java.util.Set;
 import java.util.ArrayList;
 
 import org.json.simple.parser.JSONParser;
@@ -62,24 +62,7 @@ public class InfluxDBSinkTask extends SinkTask {
     this.influxDB = this.factory.create(this.config);
   }
 
-  static final Schema TAG_SCHEMA = SchemaBuilder.map(Schema.STRING_SCHEMA, Schema.STRING_SCHEMA).build();
   static final Schema TAG_OPTIONAL_SCHEMA = SchemaBuilder.map(Schema.STRING_SCHEMA, Schema.STRING_SCHEMA).optional().build();
-  static final Set<String> SKIP_FIELDS = ImmutableSet.of("measurement", "tags");
-  static final Set<String> INCLUDE_LOGICAL = ImmutableSet.of(
-      Decimal.LOGICAL_NAME
-  );
-
-  static final Set<Schema.Type> INCLUDE_TYPES = ImmutableSet.of(
-      Schema.Type.FLOAT32,
-      Schema.Type.FLOAT64,
-      Schema.Type.INT8,
-      Schema.Type.INT16,
-      Schema.Type.INT32,
-      Schema.Type.INT64,
-      Schema.Type.STRING,
-      Schema.Type.BOOLEAN
-  );
-
   @Override
   public void put(Collection<SinkRecord> records) {
     /**
@@ -144,14 +127,15 @@ public class InfluxDBSinkTask extends SinkTask {
       }
 
       JSONObject tagField = null;
-      final Map<String, String> tags = null;
+      final Map<String, String> tags = new HashMap<String, String>();
       try {
         tagField = (JSONObject) jParser.parse(jcon.get("tags").toString());
         ArrayList<String> tagKeys = new ArrayList<String>(tagField.keySet());
         for (String tagKey : tagKeys) {
+          System.out.println("THIS IS VALUE OF TAG : " + tagKey + " | " + tagField.get(tagKey).toString());
           tags.put(tagKey, tagField.get(tagKey).toString());
         }
-        System.out.println("THIS IS VALUE OF CONTAINER : " + tags);
+        System.out.println("THIS IS VALUE OF CONTAINER : " + tags.toString());
       } catch (ParseException e) {
         e.printStackTrace();
       }
