@@ -16,15 +16,10 @@
 package com.github.jcustenborder.kafka.connect.influxdb;
 
 import com.github.jcustenborder.kafka.connect.utils.VersionUtil;
-//import com.google.common.base.Joiner;
+import com.github.wnameless.json.flattener.JsonFlattener;
 import com.google.common.base.Strings;
-//import com.google.common.collect.ImmutableMap;
-//import com.google.common.collect.ImmutableSet;
-//import org.apache.kafka.connect.data.Decimal;
-//import org.apache.kafka.connect.data.Field;
 import org.apache.kafka.connect.data.Schema;
 import org.apache.kafka.connect.data.SchemaBuilder;
-//import org.apache.kafka.connect.data.Struct;
 import org.apache.kafka.connect.errors.DataException;
 import org.apache.kafka.connect.sink.SinkRecord;
 import org.apache.kafka.connect.sink.SinkTask;
@@ -35,11 +30,10 @@ import org.influxdb.dto.Point;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-// import java.util.Set;
-import java.util.ArrayList;
 
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
@@ -111,7 +105,6 @@ public class InfluxDBSinkTask extends SinkTask {
     System.out.println("THIS IS VALUE OF RECORDS : " + String.valueOf(records));
     for (SinkRecord record : records) {
       System.out.println("THIS IS VALUE OF String : " + record.value().toString());
-      Long kafkaOffset = record.kafkaOffset();
       JSONObject jcon = null;
       try {
         jcon = (JSONObject) jParser.parse(record.value().toString());
@@ -132,7 +125,6 @@ public class InfluxDBSinkTask extends SinkTask {
         tagField = (JSONObject) jParser.parse(jcon.get("tags").toString());
         ArrayList<String> tagKeys = new ArrayList<String>(tagField.keySet());
         for (String tagKey : tagKeys) {
-          System.out.println("THIS IS VALUE OF TAG : " + tagKey + " | " + tagField.get(tagKey).toString());
           tags.put(tagKey, tagField.get(tagKey).toString());
         }
         System.out.println("THIS IS VALUE OF CONTAINER : " + tags.toString());
@@ -149,12 +141,18 @@ public class InfluxDBSinkTask extends SinkTask {
       try {
         dataField = (JSONObject) jParser.parse(jcon.get("fields").toString());
         System.out.println("THIS IS VALUE OF Data Fields : " + dataField);
-        ArrayList<String> fieldKeys = new ArrayList<String>(dataField.keySet());
-        System.out.println("THIS IS VALUE OF Data Fields KEY SET : " + dataField.keySet());
+        /**
+         * flatten nested data field
+         */
+        JSONObject flattenedDataField = (JSONObject) jParser.parse(JsonFlattener.flatten(dataField.toString()));
+        System.out.println("THIS IS VALUE OF FLATTENEDJSON : " + flattenedDataField);
+
+        ArrayList<String> fieldKeys = new ArrayList<String>(flattenedDataField.keySet());
+        System.out.println("THIS IS VALUE OF Data Fields KEY SET : " + flattenedDataField.keySet());
 
         for (String fieldKey : fieldKeys) {
           System.out.println("THIS IS VALUE OF Data Fields KEYs : " + fieldKey);
-          fields.put(fieldKey, dataField.get(fieldKey));
+          fields.put(fieldKey, flattenedDataField.get(fieldKey));
         }
       } catch (ParseException e) {
         e.printStackTrace();
