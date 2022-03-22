@@ -118,15 +118,15 @@ public class InfluxDBSinkTask extends SinkTask {
       System.out.println("THIS IS VALUE OF JSONObject : " + cinData);
 
       String cinSUR = (String) ((JSONObject) ((JSONObject) cinData.get("pc")).get("m2m:sgn")).get("sur");
-      String[] SurArr = cinSUR.split("///");
-      String measurement = SurArr[1];
+      String[] surArr = cinSUR.split("/");
+      String measurement = surArr[1];
       System.out.println("THIS IS VALUE OF MEASUREMENT : " + measurement);
       if (Strings.isNullOrEmpty(measurement.toString())) {
         throw new DataException("measurement is a required field.");
       }
 
       final Map<String, String> tags = new HashMap<String, String>();
-      tags.put("container", SurArr[2]);
+      tags.put("container", surArr[2]);
       System.out.println("THIS IS VALUE OF CONTAINER : " + tags.toString());
 
       final long time = record.timestamp();
