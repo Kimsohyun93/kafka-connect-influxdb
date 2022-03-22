@@ -16,7 +16,7 @@
 package com.github.jcustenborder.kafka.connect.influxdb;
 
 import com.github.jcustenborder.kafka.connect.utils.VersionUtil;
-// import com.github.wnameless.json.flattener.JsonFlattener;
+import com.github.wnameless.json.flattener.JsonFlattener;
 import com.google.common.base.Strings;
 import org.apache.kafka.connect.data.Schema;
 import org.apache.kafka.connect.data.SchemaBuilder;
@@ -30,14 +30,13 @@ import org.influxdb.dto.Point;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.json.simple.parser.JSONParser;
-//import org.json.simple.JSONObject;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 public class InfluxDBSinkTask extends SinkTask {
@@ -110,7 +109,7 @@ public class InfluxDBSinkTask extends SinkTask {
     System.out.println("THIS IS VALUE OF RECORDS : " + String.valueOf(records));
     for (SinkRecord record : records) {
       System.out.println("THIS IS VALUE OF String : " + record.value().toString());
-      JSONObject cinData = null;
+      JSONObject cinData = new JSONObject();
       try {
         cinData = (JSONObject) jParser.parse(record.value().toString());
       } catch (ParseException e) {
@@ -118,50 +117,41 @@ public class InfluxDBSinkTask extends SinkTask {
       }
       System.out.println("THIS IS VALUE OF JSONObject : " + cinData);
 
-      String measurement = (String) cinData.get("pc");
+      String cinSUR = (String) ((JSONObject) ((JSONObject) cinData.get("pc")).get("m2m:sgn")).get("sur");
+      String[] SurArr = cinSUR.split("/");
+      String measurement = SurArr[1];
       System.out.println("THIS IS VALUE OF MEASUREMENT : " + measurement);
       if (Strings.isNullOrEmpty(measurement.toString())) {
         throw new DataException("measurement is a required field.");
       }
-//
-//      JSONObject tagField = null;
-//      final Map<String, String> tags = new HashMap<String, String>();
-//      try {
-//        tagField = (JSONObject) jParser.parse(jcon.get("tags").toString());
-//        ArrayList<String> tagKeys = new ArrayList<String>(tagField.keySet());
-//        for (String tagKey : tagKeys) {
-//          tags.put(tagKey, tagField.get(tagKey).toString());
-//        }
-//        System.out.println("THIS IS VALUE OF CONTAINER : " + tags.toString());
-//      } catch (ParseException e) {
-//        e.printStackTrace();
-//      }
-////      String tag = (String) tagField.get("container");
-//
-//      final long time = record.timestamp();
-//      PointKey key = PointKey.of(measurement, time, tags);
-//      Map<String, Object> fields = builders.computeIfAbsent(key, pointKey -> new HashMap<>(100));
-//
-//      JSONObject dataField = null;
-//      try {
-//        dataField = (JSONObject) jParser.parse(jcon.get("fields").toString());
-//        System.out.println("THIS IS VALUE OF Data Fields : " + dataField);
-//        /**
-//         * flatten nested data field
-//         */
-//        JSONObject flattenedDataField = (JSONObject) jParser.parse(JsonFlattener.flatten(dataField.toString()));
-//        System.out.println("THIS IS VALUE OF FLATTENEDJSON : " + flattenedDataField);
-//
-//        ArrayList<String> fieldKeys = new ArrayList<String>(flattenedDataField.keySet());
-//        System.out.println("THIS IS VALUE OF Data Fields KEY SET : " + flattenedDataField.keySet());
-//
-//        for (String fieldKey : fieldKeys) {
-//          System.out.println("THIS IS VALUE OF Data Fields KEYs : " + fieldKey);
-//          fields.put(fieldKey, flattenedDataField.get(fieldKey));
-//        }
-//      } catch (ParseException e) {
-//        e.printStackTrace();
-//      }
+
+      final Map<String, String> tags = new HashMap<String, String>();
+      tags.put("container", SurArr[2]);
+      System.out.println("THIS IS VALUE OF CONTAINER : " + tags.toString());
+
+      final long time = record.timestamp();
+      PointKey key = PointKey.of(measurement, time, tags);
+      Map<String, Object> fields = builders.computeIfAbsent(key, pointKey -> new HashMap<>(100));
+
+      JSONObject dataField =(JSONObject) ((JSONObject) ((JSONObject) ((JSONObject) ((JSONObject) ((JSONObject) cinData.get("pc")).get("m2m:sgn")).get("nev")).get("rep")).get("m2m:cin")).get("con");
+      System.out.println("THIS IS VALUE OF Data Fields : " + dataField);
+      try {
+        /**
+         * flatten nested data field
+         */
+        JSONObject flattenedDataField = (JSONObject) jParser.parse(JsonFlattener.flatten(dataField.toString()));
+        System.out.println("THIS IS VALUE OF FLATTENEDJSON : " + flattenedDataField);
+
+        ArrayList<String> fieldKeys = new ArrayList<String>(flattenedDataField.keySet());
+        System.out.println("THIS IS VALUE OF Data Fields KEY SET : " + flattenedDataField.keySet());
+
+        for (String fieldKey : fieldKeys) {
+          System.out.println("THIS IS VALUE OF Data Fields KEYs : " + fieldKey);
+          fields.put(fieldKey, flattenedDataField.get(fieldKey));
+        }
+      } catch (ParseException e) {
+        e.printStackTrace();
+      }
     }
     BatchPoints.Builder batchBuilder = BatchPoints.database(this.config.database)
             .consistency(this.config.consistencyLevel);
