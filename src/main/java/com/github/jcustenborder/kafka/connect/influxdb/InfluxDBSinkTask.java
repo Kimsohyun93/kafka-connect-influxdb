@@ -16,7 +16,7 @@
 package com.github.jcustenborder.kafka.connect.influxdb;
 
 import com.github.jcustenborder.kafka.connect.utils.VersionUtil;
-import com.github.wnameless.json.flattener.JsonFlattener;
+// import com.github.wnameless.json.flattener.JsonFlattener;
 import com.google.common.base.Strings;
 import org.apache.kafka.connect.data.Schema;
 import org.apache.kafka.connect.data.SchemaBuilder;
@@ -30,7 +30,7 @@ import org.influxdb.dto.Point;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
