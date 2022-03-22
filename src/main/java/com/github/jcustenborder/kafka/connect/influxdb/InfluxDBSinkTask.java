@@ -144,11 +144,11 @@ public class InfluxDBSinkTask extends SinkTask {
         /**
          * flatten nested data field & Get Parsed Creation Time
          */
-        String creation_time = (String) dataField.get("ct");
+        String creationTime = (String) dataField.get("ct");
         DateFormat df = new SimpleDateFormat("yyyyMMddTHHmmss");
-        Date parsed_time = df.parse(creation_time);
+        Date parsedTime = df.parse(creationTime);
         JSONObject flattenedDataField = (JSONObject) jParser.parse(JsonFlattener.flatten(dataField.get("con").toString()));
-        flattenedDataField.put("creation_time", parsed_time);
+        flattenedDataField.put("creation_time", parsedTime);
         System.out.println("THIS IS VALUE OF FLATTENED JSON : " + flattenedDataField);
 
         ArrayList<String> fieldKeys = new ArrayList<String>(flattenedDataField.keySet());
