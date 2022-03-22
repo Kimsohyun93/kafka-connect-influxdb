@@ -118,7 +118,7 @@ public class InfluxDBSinkTask extends SinkTask {
       System.out.println("THIS IS VALUE OF JSONObject : " + cinData);
 
       String cinSUR = (String) ((JSONObject) ((JSONObject) cinData.get("pc")).get("m2m:sgn")).get("sur");
-      String[] SurArr = cinSUR.split("/");
+      String[] SurArr = cinSUR.split("///");
       String measurement = SurArr[1];
       System.out.println("THIS IS VALUE OF MEASUREMENT : " + measurement);
       if (Strings.isNullOrEmpty(measurement.toString())) {
@@ -133,7 +133,7 @@ public class InfluxDBSinkTask extends SinkTask {
       PointKey key = PointKey.of(measurement, time, tags);
       Map<String, Object> fields = builders.computeIfAbsent(key, pointKey -> new HashMap<>(100));
 
-      JSONObject dataField =(JSONObject) ((JSONObject) ((JSONObject) ((JSONObject) ((JSONObject) ((JSONObject) cinData.get("pc")).get("m2m:sgn")).get("nev")).get("rep")).get("m2m:cin")).get("con");
+      JSONObject dataField = (JSONObject) ((JSONObject) ((JSONObject) ((JSONObject) ((JSONObject) ((JSONObject) cinData.get("pc")).get("m2m:sgn")).get("nev")).get("rep")).get("m2m:cin")).get("con");
       System.out.println("THIS IS VALUE OF Data Fields : " + dataField);
       try {
         /**
