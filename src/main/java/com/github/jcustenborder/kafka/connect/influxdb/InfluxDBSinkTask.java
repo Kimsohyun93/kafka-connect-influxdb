@@ -36,7 +36,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.json.simple.parser.JSONParser;
-import org.json.simple.JSONObject;
+//import org.json.simple.JSONObject;
+import org.json.JSONObject;
 import org.json.simple.parser.ParseException;
 
 public class InfluxDBSinkTask extends SinkTask {
@@ -60,40 +61,44 @@ public class InfluxDBSinkTask extends SinkTask {
   @Override
   public void put(Collection<SinkRecord> records) {
     /**
-     * Sink Records Format
+     * Mobius CIN Return Data
      *
-     * [
-     *   SinkRecord{
-     *     kafkaOffset=0,
-     *     timestampType=CreateTime
+     * {
+     *   "op": 5,
+     *   "rqi": "auzOyAA5eTj",
+     *   "to": "kafka://localhost:9092/timeseries",
+     *   "fr": "/Mobius2",
+     *   "pc": {
+     *     "m2m:sgn": {
+     *       "sur": "Mobius/kafka_ae/kafka_cnt/storageOptions",
+     *       "nev": {
+     *         "rep": {
+     *           "m2m:cin": {
+     *             "rn": "4-202203100748514337203",
+     *             "ty": 4,
+     *             "pi": "3-20220310061854025127",
+     *             "ri": "4-20220310074851434990",
+     *             "ct": "20220310T074851",
+     *             "lt": "20220310T074851",
+     *             "st": 29,
+     *             "et": "20240310T074851",
+     *             "cs": 113,
+     *             "con": {
+     *               "TAG_ID": 8065243138,
+     *               "POS_TYPE": 1,
+     *               "POS_TIME": "2021-10-14 08:53:30.096",
+     *               "XPOS": 42.7068856917,
+     *               "YPOS": 2.3179656097
+     *             },
+     *             "cr": "S20170717074825768bp2l"
+     *           }
+     *         },
+     *         "net": 3
+     *       },
+     *       "rvi": "2a"
+     *     }
      *   }
-     *   ConnectRecord{
-     *     topic='influx-test3',
-     *     kafkaPartition=0,
-     *     key=null,
-     *     keySchema=null,
-     *     value=Struct{
-     *       measurement=kafka_ae,
-     *       tags=kafka_cnt,
-     *       fields={
-     *         "TAG_ID": 8065243138,
-     *         "POS_TYPE": 1,
-     *         "POS_TIME": "2021-10-14 08:53:30.096",
-     *         "XPOS": 42.7068856917,
-     *         "YPOS": 2.3179656097
-     *
-     *       }
-     *     },
-     *     valueSchema=Schema{
-     *       STRUCT
-     *     },
-     *     timestamp=1647393968223,
-     *     headers=ConnectHeaders(headers=)
-     *   },
-     *   SinkRecord{
-     *     kafkaOffset=0,
-     *     ...
-     * ]
+     * }
      */
     if (null == records || records.isEmpty()) {
       return;
@@ -105,15 +110,15 @@ public class InfluxDBSinkTask extends SinkTask {
     System.out.println("THIS IS VALUE OF RECORDS : " + String.valueOf(records));
     for (SinkRecord record : records) {
       System.out.println("THIS IS VALUE OF String : " + record.value().toString());
-      JSONObject jcon = null;
+      JSONObject cinData = null;
       try {
-        jcon = (JSONObject) jParser.parse(record.value().toString());
+        cinData = (JSONObject) jParser.parse(record.value().toString());
       } catch (ParseException e) {
         e.printStackTrace();
       }
-      System.out.println("THIS IS VALUE OF JSONObject : " + jcon);
+      System.out.println("THIS IS VALUE OF JSONObject : " + cinData);
 
-      String measurement = (String) jcon.get("measurement");
+      String measurement = (String) cinData.get("pc");
       System.out.println("THIS IS VALUE OF MEASUREMENT : " + measurement);
       if (Strings.isNullOrEmpty(measurement.toString())) {
         throw new DataException("measurement is a required field.");
