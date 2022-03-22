@@ -39,6 +39,11 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
+//import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class InfluxDBSinkTask extends SinkTask {
   private static final Logger log = LoggerFactory.getLogger(InfluxDBSinkTask.class);
   InfluxDBSinkConnectorConfig config;
@@ -133,14 +138,18 @@ public class InfluxDBSinkTask extends SinkTask {
       PointKey key = PointKey.of(measurement, time, tags);
       Map<String, Object> fields = builders.computeIfAbsent(key, pointKey -> new HashMap<>(100));
 
-      JSONObject dataField = (JSONObject) ((JSONObject) ((JSONObject) ((JSONObject) ((JSONObject) ((JSONObject) cinData.get("pc")).get("m2m:sgn")).get("nev")).get("rep")).get("m2m:cin")).get("con");
+      JSONObject dataField = (JSONObject) ((JSONObject) ((JSONObject) ((JSONObject) ((JSONObject) cinData.get("pc")).get("m2m:sgn")).get("nev")).get("rep")).get("m2m:cin");
       System.out.println("THIS IS VALUE OF Data Fields : " + dataField);
       try {
         /**
-         * flatten nested data field
+         * flatten nested data field & Get Parsed Creation Time
          */
-        JSONObject flattenedDataField = (JSONObject) jParser.parse(JsonFlattener.flatten(dataField.toString()));
-        System.out.println("THIS IS VALUE OF FLATTENEDJSON : " + flattenedDataField);
+        String creation_time = (String) dataField.get("ct");
+        DateFormat df = new SimpleDateFormat("yyyyMMddTHHmmss");
+        Date parsed_time = df.parse(creation_time);
+        JSONObject flattenedDataField = (JSONObject) jParser.parse(JsonFlattener.flatten(dataField.get("con").toString()));
+        flattenedDataField.put("creation_time", parsed_time);
+        System.out.println("THIS IS VALUE OF FLATTENED JSON : " + flattenedDataField);
 
         ArrayList<String> fieldKeys = new ArrayList<String>(flattenedDataField.keySet());
         System.out.println("THIS IS VALUE OF Data Fields KEY SET : " + flattenedDataField.keySet());
@@ -150,6 +159,8 @@ public class InfluxDBSinkTask extends SinkTask {
           fields.put(fieldKey, flattenedDataField.get(fieldKey));
         }
       } catch (ParseException e) {
+        e.printStackTrace();
+      } catch (java.text.ParseException e) {
         e.printStackTrace();
       }
     }
