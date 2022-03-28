@@ -15,6 +15,10 @@
  */
 package com.github.jcustenborder.kafka.connect.influxdb;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.jcustenborder.kafka.connect.utils.VersionUtil;
 import com.github.wnameless.json.flattener.JsonFlattener;
 import com.google.common.base.Strings;
@@ -30,6 +34,7 @@ import org.influxdb.dto.Point;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -59,7 +64,6 @@ public class InfluxDBSinkTask extends SinkTask {
     this.config = new InfluxDBSinkConnectorConfig(settings);
     this.influxDB = this.factory.create(this.config);
   }
-
   static final Schema TAG_OPTIONAL_SCHEMA = SchemaBuilder.map(Schema.STRING_SCHEMA, Schema.STRING_SCHEMA).optional().build();
   @Override
   public void put(Collection<SinkRecord> records) {
@@ -109,19 +113,14 @@ public class InfluxDBSinkTask extends SinkTask {
     JSONParser jParser = new JSONParser();
     Map<PointKey, Map<String, Object>> builders = new HashMap<>(records.size());
 
-    System.out.println("**************** \n \n \n \n \n \n****************** \n \n \n \n HERE \n **************** \n");
-    System.out.println("THIS IS VALUE OF RECORDS : " + String.valueOf(records));
     for (SinkRecord record : records) {
-      System.out.println("THIS IS VALUE OF String : " + record.value().toString());
-      JSONObject cinData = new JSONObject();
-      try {
-        cinData = (JSONObject) jParser.parse(record.value().toString());
-      } catch (ParseException e) {
-        e.printStackTrace();
-      }
-      System.out.println("THIS IS VALUE OF JSONObject : " + cinData);
 
-      String cinSUR = (String) ((JSONObject) ((JSONObject) cinData.get("pc")).get("m2m:sgn")).get("sur");
+      Map<String, Object> jsonMap = (Map<String, Object>) record.value();
+      System.out.println("**************** \n \n \n \n \n \n****************** \n \n \n \n HERE \n **************** \n");
+      System.out.println("THIS IS VALUE OF RECORDS : " + jsonMap);
+
+      Map<String, Object> sgnData = (Map<String, Object>) ((Map<String, Object>) jsonMap.get("pc")).get("m2m:sgn");
+      String cinSUR = (String) sgnData.get("sur");
       String[] surArr = cinSUR.split("/");
       String measurement = surArr[1];
       System.out.println("THIS IS VALUE OF MEASUREMENT : " + measurement);
@@ -137,7 +136,7 @@ public class InfluxDBSinkTask extends SinkTask {
       PointKey key = PointKey.of(measurement, time, tags);
       Map<String, Object> fields = builders.computeIfAbsent(key, pointKey -> new HashMap<>(100));
 
-      JSONObject dataField = (JSONObject) ((JSONObject) ((JSONObject) ((JSONObject) ((JSONObject) cinData.get("pc")).get("m2m:sgn")).get("nev")).get("rep")).get("m2m:cin");
+      Map<String, Object> dataField = (Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) sgnData.get("nev")).get("rep")).get("m2m:cin");
       System.out.println("THIS IS VALUE OF Data Fields : " + dataField);
       try {
         /**
@@ -150,7 +149,11 @@ public class InfluxDBSinkTask extends SinkTask {
         Date parsedTime = dateParser.parse(creationTime);
         creationTime = dateFormatter.format(parsedTime);
 
-        JSONObject flattenedDataField = (JSONObject) jParser.parse(JsonFlattener.flatten(dataField.get("con").toString()));
+        System.out.println("THIS IS CON STRING VALUE *** : " + dataField.get("con").toString());
+        ObjectMapper objectMapper = new ObjectMapper();
+        String respData = objectMapper.writeValueAsString(dataField.get("con"));
+
+        JSONObject flattenedDataField = (JSONObject) jParser.parse(JsonFlattener.flatten(respData));
         flattenedDataField.put("creation_time", creationTime);
         System.out.println("THIS IS VALUE OF FLATTENED JSON : " + flattenedDataField);
 
@@ -164,6 +167,14 @@ public class InfluxDBSinkTask extends SinkTask {
       } catch (ParseException e) {
         e.printStackTrace();
       } catch (java.text.ParseException e) {
+        e.printStackTrace();
+      } catch (JsonMappingException e) {
+        e.printStackTrace();
+      } catch (JsonParseException e) {
+        e.printStackTrace();
+      } catch (JsonProcessingException e) {
+        e.printStackTrace();
+      } catch (IOException e) {
         e.printStackTrace();
       }
     }
