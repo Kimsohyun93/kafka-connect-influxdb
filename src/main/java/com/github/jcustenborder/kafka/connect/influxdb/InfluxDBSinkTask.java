@@ -22,6 +22,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.jcustenborder.kafka.connect.utils.VersionUtil;
 import com.github.wnameless.json.flattener.JsonFlattener;
 import com.google.common.base.Strings;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.connect.data.Schema;
 import org.apache.kafka.connect.data.SchemaBuilder;
 import org.apache.kafka.connect.errors.DataException;
@@ -35,10 +38,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+
 
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
@@ -46,10 +46,15 @@ import org.json.simple.parser.ParseException;
 
 
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.Properties;
 
 public class InfluxDBSinkTask extends SinkTask {
-  private static final Logger log = LoggerFactory.getLogger(InfluxDBSinkTask.class);
+  private static final Logger log = LoggerFactory.getLogger(com.github.jcustenborder.kafka.connect.influxdb.InfluxDBSinkTask.class);
   InfluxDBSinkConnectorConfig config;
   InfluxDBFactory factory = new InfluxDBFactoryImpl();
   InfluxDB influxDB;
@@ -178,23 +183,49 @@ public class InfluxDBSinkTask extends SinkTask {
         e.printStackTrace();
       }
     }
-    BatchPoints.Builder batchBuilder = BatchPoints.database(this.config.database)
-            .consistency(this.config.consistencyLevel);
+    /*
+     * For Kafka Produce (Flatten Data)
+     */
+    String topicName = "flatten_timeseries";
+    Properties props = new Properties();
+    props.put("bootstrap.servers", "localhost:9092");
+    props.put("acks", "all");
+    props.put("retries", 0);
+    props.put("batch.size", 16384);
+    props.put("linger.ms", 1);
+    props.put("buffer.memory", 33554432);
+    props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+    props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+    Producer<String, String> producer = new KafkaProducer<String, String>(props);
+    Map<String, Object> flattenData = null;
+
+    BatchPoints.Builder batchBuilder = BatchPoints.database(this.config.database).consistency(this.config.consistencyLevel);
 
     for (Map.Entry<PointKey, Map<String, Object>> values : builders.entrySet()) {
       final Point.Builder builder = Point.measurement(values.getKey().measurement);
       builder.time(values.getKey().time, this.config.precision);
       if (null != values.getKey().tags || values.getKey().tags.isEmpty()) {
         builder.tag(values.getKey().tags);
+        flattenData = values.getValue();
+        flattenData.putAll(values.getKey().tags);
+//        flattenData.put("tag", values.getValue().toString());
       }
       builder.fields(values.getValue());
+//      flattenData.put("field", values.getValue());
       Point point = builder.build();
       if (log.isTraceEnabled()) {
         log.trace("put() - Adding point {}", point.toString());
       }
       batchBuilder.point(point);
-    }
+      try {
+        producer.send(new ProducerRecord<String, String>(topicName, values.getKey().measurement, flattenData.toString()));
+        System.out.println("Message sent successfully" + flattenData);
+        producer.close();
+      } catch (Exception e) {
+        System.out.println("Kafka Produce Exception : " + e);
+      }
 
+    }
     BatchPoints batch = batchBuilder.build();
     this.influxDB.write(batch);
   }
