@@ -150,7 +150,7 @@ public class InfluxDBSinkTask extends SinkTask {
 
         String creationTime = (String) dataField.get("ct");
         SimpleDateFormat  dateParser  = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
-        SimpleDateFormat  dateFormatter   = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat  dateFormatter   = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date parsedTime = dateParser.parse(creationTime);
         creationTime = dateFormatter.format(parsedTime);
 
