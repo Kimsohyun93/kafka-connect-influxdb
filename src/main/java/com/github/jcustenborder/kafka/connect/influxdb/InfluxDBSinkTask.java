@@ -199,7 +199,7 @@ public class InfluxDBSinkTask extends SinkTask {
       }
       batchBuilder.point(point);
       Map<String, String> tmpTags = values.getKey().tags;
-      String kafkaTopic = tmpTags.get("ae") + "/" + tmpTags.get("container");
+      String kafkaTopic = tmpTags.get("ae") + "_" + tmpTags.get("container");
       try {
         producer.send(new ProducerRecord<String, String>(kafkaTopic, flattenData.toString())); //topic, data
         System.out.println("Message sent successfully" + flattenData);
