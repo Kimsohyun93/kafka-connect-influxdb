@@ -56,6 +56,7 @@ public class InfluxDBSinkTask extends SinkTask {
   InfluxDBSinkConnectorConfig config;
   InfluxDBFactory factory = new InfluxDBFactoryImpl();
   InfluxDB influxDB;
+  ObjectMapper objectMapper = new ObjectMapper();
 
   @Override
   public String version() {
@@ -134,7 +135,6 @@ public class InfluxDBSinkTask extends SinkTask {
         creationTime = dateFormatter.format(parsedTime);
 
         System.out.println("THIS IS CON STRING VALUE *** : " + dataField.get("con").toString());
-        ObjectMapper objectMapper = new ObjectMapper();
         String respData = objectMapper.writeValueAsString(dataField.get("con"));
 
         JSONObject flattenedDataField = (JSONObject) jParser.parse(JsonFlattener.flatten(respData));
@@ -195,7 +195,7 @@ public class InfluxDBSinkTask extends SinkTask {
       Map<String, String> tmpTags = values.getKey().tags;
       String kafkaTopic = tmpTags.get("ae") + "." + tmpTags.get("container");
       try {
-        producer.send(new ProducerRecord<String, String>(kafkaTopic, jParser.parse(flattenData.toString()).toString())); //topic, data
+        producer.send(new ProducerRecord<String, String>(kafkaTopic, jParser.parse(objectMapper.writeValueAsString(flattenData)).toString())); //topic, data
         System.out.println("Message sent successfully" + flattenData);
         producer.close();
       } catch (Exception e) {
