@@ -21,13 +21,11 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.jcustenborder.kafka.connect.utils.VersionUtil;
 import com.github.wnameless.json.flattener.JsonFlattener;
-//import com.google.common.base.Strings;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.connect.data.Schema;
 import org.apache.kafka.connect.data.SchemaBuilder;
-//import org.apache.kafka.connect.errors.DataException;
 import org.apache.kafka.connect.sink.SinkRecord;
 import org.apache.kafka.connect.sink.SinkTask;
 import org.influxdb.InfluxDB;
@@ -167,7 +165,6 @@ public class InfluxDBSinkTask extends SinkTask {
     /*
      * For Kafka Produce (Flatten Data)
      */
-//    String topicName = "";
     Properties props = new Properties();
     props.put("bootstrap.servers", "localhost:9092");
     props.put("acks", "all");
@@ -188,11 +185,8 @@ public class InfluxDBSinkTask extends SinkTask {
       if (null != values.getKey().tags || values.getKey().tags.isEmpty()) {
         builder.tag(values.getKey().tags);
         flattenData = values.getValue();
-//        flattenData.putAll(values.getKey().tags);
-//        flattenData.put("tag", values.getValue().toString());
       }
       builder.fields(values.getValue());
-//      flattenData.put("field", values.getValue());
       Point point = builder.build();
       if (log.isTraceEnabled()) {
         log.trace("put() - Adding point {}", point.toString());
