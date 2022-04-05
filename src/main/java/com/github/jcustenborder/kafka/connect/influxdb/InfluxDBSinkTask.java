@@ -76,40 +76,26 @@ public class InfluxDBSinkTask extends SinkTask {
      * Mobius CIN Return Data
      *
      * {
-     *   "op": 5,
-     *   "rqi": "auzOyAA5eTj",
-     *   "to": "kafka://localhost:9092/timeseries",
-     *   "fr": "/Mobius2",
-     *   "pc": {
-     *     "m2m:sgn": {
-     *       "sur": "Mobius/kafka_ae/kafka_cnt/storageOptions",
-     *       "nev": {
-     *         "rep": {
-     *           "m2m:cin": {
-     *             "rn": "4-202203100748514337203",
+     *     "m2m:rce": {
+     *         "uri": "Mobius/kafka_ae/t_cnt2/4-202204050238413792316",
+     *         "m2m:cin": {
+     *             "rn": "4-202204050238413792316",
      *             "ty": 4,
-     *             "pi": "3-20220310061854025127",
-     *             "ri": "4-20220310074851434990",
-     *             "ct": "20220310T074851",
-     *             "lt": "20220310T074851",
-     *             "st": 29,
-     *             "et": "20240310T074851",
-     *             "cs": 113,
+     *             "pi": "3-20220404020617497645",
+     *             "ri": "4-20220405023841380700",
+     *             "ct": "20220405T023841",
+     *             "lt": "20220405T023841",
+     *             "st": 192,
+     *             "et": "20240405T023841",
+     *             "cs": 62,
      *             "con": {
-     *               "TAG_ID": 8065243138,
-     *               "POS_TYPE": 1,
-     *               "POS_TIME": "2021-10-14 08:53:30.096",
-     *               "XPOS": 42.7068856917,
-     *               "YPOS": 2.3179656097
+     *                 "Latitude": 15.45243,
+     *                 "Longitude": 102.48484,
+     *                 "Altitude": 15.4545
      *             },
      *             "cr": "S20170717074825768bp2l"
-     *           }
-     *         },
-     *         "net": 3
-     *       },
-     *       "rvi": "2a"
+     *         }
      *     }
-     *   }
      * }
      */
     if (null == records || records.isEmpty()) {
@@ -124,24 +110,21 @@ public class InfluxDBSinkTask extends SinkTask {
       System.out.println("**************** \n \n \n \n \n \n****************** \n \n \n \n HERE \n **************** \n");
       System.out.println("THIS IS VALUE OF RECORDS : " + jsonMap);
 
-      Map<String, Object> sgnData = (Map<String, Object>) ((Map<String, Object>) jsonMap.get("pc")).get("m2m:sgn");
-      String cinSUR = (String) sgnData.get("sur");
-      String[] surArr = cinSUR.split("/");
-      String measurement = surArr[1];
-      System.out.println("THIS IS VALUE OF MEASUREMENT : " + measurement);
-      if (Strings.isNullOrEmpty(measurement.toString())) {
-        throw new DataException("measurement is a required field.");
-      }
+      Map<String, Object> rceData = (Map<String, Object>) jsonMap.get("m2m:rce");
+      String cinURI = (String) rceData.get("uri");
+      String[] uriArr = cinURI.split("/");
+      String measurement = "timeseries";
 
       final Map<String, String> tags = new HashMap<String, String>();
-      tags.put("container", surArr[2]);
+      tags.put("ae", uriArr[1]);
+      tags.put("container", uriArr[2]);
       System.out.println("THIS IS VALUE OF CONTAINER : " + tags.toString());
 
       final long time = record.timestamp();
       PointKey key = PointKey.of(measurement, time, tags);
       Map<String, Object> fields = builders.computeIfAbsent(key, pointKey -> new HashMap<>(100));
 
-      Map<String, Object> dataField = (Map<String, Object>) ((Map<String, Object>) ((Map<String, Object>) sgnData.get("nev")).get("rep")).get("m2m:cin");
+      Map<String, Object> dataField = (Map<String, Object>) rceData.get("m2m:cin");
       System.out.println("THIS IS VALUE OF Data Fields : " + dataField);
       try {
         /**
@@ -186,7 +169,7 @@ public class InfluxDBSinkTask extends SinkTask {
     /*
      * For Kafka Produce (Flatten Data)
      */
-    String topicName = "flatten_timeseries";
+//    String topicName = "";
     Properties props = new Properties();
     props.put("bootstrap.servers", "localhost:9092");
     props.put("acks", "all");
@@ -207,7 +190,7 @@ public class InfluxDBSinkTask extends SinkTask {
       if (null != values.getKey().tags || values.getKey().tags.isEmpty()) {
         builder.tag(values.getKey().tags);
         flattenData = values.getValue();
-        flattenData.putAll(values.getKey().tags);
+//        flattenData.putAll(values.getKey().tags);
 //        flattenData.put("tag", values.getValue().toString());
       }
       builder.fields(values.getValue());
@@ -218,7 +201,7 @@ public class InfluxDBSinkTask extends SinkTask {
       }
       batchBuilder.point(point);
       try {
-        producer.send(new ProducerRecord<String, String>(topicName, values.getKey().measurement, flattenData.toString()));
+        producer.send(new ProducerRecord<String, String>(values.getKey().tags.toString(),flattenData.toString())); //topic, data
         System.out.println("Message sent successfully" + flattenData);
         producer.close();
       } catch (Exception e) {
