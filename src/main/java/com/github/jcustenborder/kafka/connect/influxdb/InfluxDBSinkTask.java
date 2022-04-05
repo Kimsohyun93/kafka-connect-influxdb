@@ -103,7 +103,6 @@ public class InfluxDBSinkTask extends SinkTask {
     }
     JSONParser jParser = new JSONParser();
     Map<PointKey, Map<String, Object>> builders = new HashMap<>(records.size());
-
     for (SinkRecord record : records) {
 
       Map<String, Object> jsonMap = (Map<String, Object>) record.value();
@@ -114,7 +113,6 @@ public class InfluxDBSinkTask extends SinkTask {
       String cinURI = (String) rceData.get("uri");
       String[] uriArr = cinURI.split("/");
       String measurement = "timeseries";
-
       final Map<String, String> tags = new HashMap<String, String>();
       tags.put("ae", uriArr[1]);
       tags.put("container", uriArr[2]);
@@ -200,8 +198,10 @@ public class InfluxDBSinkTask extends SinkTask {
         log.trace("put() - Adding point {}", point.toString());
       }
       batchBuilder.point(point);
+      Map<String, String> tmpTags = values.getKey().tags;
+      String kafkaTopic = tmpTags.get("ae")+"/"+tmpTags.get("container");
       try {
-        producer.send(new ProducerRecord<String, String>(values.getKey().tags.toString(), flattenData.toString())); //topic, data
+        producer.send(new ProducerRecord<String, String>(kafkaTopic, flattenData.toString())); //topic, data
         System.out.println("Message sent successfully" + flattenData);
         producer.close();
       } catch (Exception e) {
