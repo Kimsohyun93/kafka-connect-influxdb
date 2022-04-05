@@ -195,7 +195,7 @@ public class InfluxDBSinkTask extends SinkTask {
       Map<String, String> tmpTags = values.getKey().tags;
       String kafkaTopic = tmpTags.get("ae") + "." + tmpTags.get("container");
       try {
-        producer.send(new ProducerRecord<String, String>(kafkaTopic, flattenData.toString())); //topic, data
+        producer.send(new ProducerRecord<String, String>(kafkaTopic, jParser.parse(flattenData.toString()).toString())); //topic, data
         System.out.println("Message sent successfully" + flattenData);
         producer.close();
       } catch (Exception e) {
