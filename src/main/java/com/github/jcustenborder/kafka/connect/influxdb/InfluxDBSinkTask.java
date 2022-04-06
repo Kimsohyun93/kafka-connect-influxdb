@@ -151,12 +151,11 @@ public class InfluxDBSinkTask extends SinkTask {
           Object o = flattenedDataField.get(fieldKey);
           System.out.println("THIS IS VALUE OF Data Fields : " + dataType + fieldKey + o);
 
-          if(o instanceof String || o instanceof Character || o instanceof Boolean || o instanceof JSONObject || o instanceof JSONArray){
+          if (o instanceof String || o instanceof Character || o instanceof Boolean || o instanceof JSONObject || o instanceof JSONArray) {
             fields.put(fieldKey, String.valueOf(o));
-          }
-          else if(o instanceof Byte || o instanceof Short || o instanceof Integer || o instanceof Long || o instanceof Double || o instanceof Float){
+          } else if (o instanceof Byte || o instanceof Short || o instanceof Integer || o instanceof Long || o instanceof Double || o instanceof Float) {
             fields.put(fieldKey, Float.parseFloat(String.valueOf(o)));
-          }else{
+          } else {
             fields.put(fieldKey, String.valueOf(o));
           }
         }
