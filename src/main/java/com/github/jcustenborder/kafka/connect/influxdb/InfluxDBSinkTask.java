@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.jcustenborder.kafka.connect.utils.VersionUtil;
 import com.github.wnameless.json.flattener.JsonFlattener;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -32,6 +33,7 @@ import org.influxdb.InfluxDB;
 import org.influxdb.dto.BatchPoints;
 import org.influxdb.dto.Point;
 
+import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -145,8 +147,18 @@ public class InfluxDBSinkTask extends SinkTask {
         System.out.println("THIS IS VALUE OF Data Fields KEY SET : " + flattenedDataField.keySet());
 
         for (String fieldKey : fieldKeys) {
-          System.out.println("THIS IS VALUE OF Data Fields KEYs : " + fieldKey);
-          fields.put(fieldKey, flattenedDataField.get(fieldKey));
+          String dataType = flattenedDataField.get(fieldKey).getClass().getSimpleName();
+          Object o = flattenedDataField.get(fieldKey);
+          System.out.println("THIS IS VALUE OF Data Fields : " + dataType + fieldKey + o);
+
+          if(o instanceof String || o instanceof Character || o instanceof Boolean || o instanceof JSONObject || o instanceof JSONArray){
+            fields.put(fieldKey, String.valueOf(o));
+          }
+          else if(o instanceof Byte || o instanceof Short || o instanceof Integer || o instanceof Long || o instanceof Double || o instanceof Float){
+            fields.put(fieldKey, Float.parseFloat(String.valueOf(o)));
+          }else{
+            fields.put(fieldKey, String.valueOf(o));
+          }
         }
       } catch (ParseException e) {
         e.printStackTrace();
