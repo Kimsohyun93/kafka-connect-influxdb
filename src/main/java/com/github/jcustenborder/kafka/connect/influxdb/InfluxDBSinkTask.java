@@ -148,7 +148,7 @@ public class InfluxDBSinkTask extends SinkTask {
         for (String fieldKey : fieldKeys) {
           String dataType = flattenedDataField.get(fieldKey).getClass().getSimpleName();
           Object o = flattenedDataField.get(fieldKey);
-          System.out.println("THIS IS VALUE OF Data Fields : " + dataType + fieldKey + o);
+          System.out.println("THIS IS VALUE OF Data Fields : " + dataType + fieldKey + String.valueOf(o));
 
           if (o instanceof String || o instanceof Character || o instanceof Boolean || o instanceof JSONObject || o instanceof JSONArray) {
             fields.put(fieldKey, String.valueOf(o));
