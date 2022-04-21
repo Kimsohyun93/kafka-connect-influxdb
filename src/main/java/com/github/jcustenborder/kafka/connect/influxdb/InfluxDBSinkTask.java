@@ -114,8 +114,8 @@ public class InfluxDBSinkTask extends SinkTask {
       String[] uriArr = cinURI.split("/");
       String measurement = "timeseries";
       final Map<String, String> tags = new HashMap<String, String>();
-      tags.put("ae", uriArr[1]);
-      tags.put("container", uriArr[2]);
+      tags.put("ApplicationEntity", uriArr[1]);
+      tags.put("Container", uriArr[2]);
       System.out.println("THIS IS VALUE OF CONTAINER : " + tags.toString());
 
       final long time = record.timestamp();
@@ -203,7 +203,7 @@ public class InfluxDBSinkTask extends SinkTask {
       }
       batchBuilder.point(point);
       Map<String, String> tmpTags = values.getKey().tags;
-      String kafkaTopic = "refine." + tmpTags.get("ae") + "." + tmpTags.get("container");
+      String kafkaTopic = "refine." + tmpTags.get("ApplicationEntity") + "." + tmpTags.get("Container");
       try {
         producer.send(new ProducerRecord<String, String>(kafkaTopic, objectMapper.writeValueAsString(flattenData))); //topic, data
         System.out.println("Message sent successfully" + flattenData);
