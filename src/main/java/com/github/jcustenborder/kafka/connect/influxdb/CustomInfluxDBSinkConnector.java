@@ -33,8 +33,8 @@ import java.util.Map;
 @Description("The InfluxDBSinkConnector is used to write data from a :term:`Kafka topic`_ to an InfluxDB host. When there " +
     "are more than one record in a batch that have the same measurement, time, and tags, they will be combined to a single " +
     "point an written to InfluxDB in a batch.")
-public class InfluxDBSinkConnector extends SinkConnector {
-  private static final Logger log = LoggerFactory.getLogger(InfluxDBSinkConnector.class);
+public class CustomInfluxDBSinkConnector extends SinkConnector {
+  private static final Logger log = LoggerFactory.getLogger(CustomInfluxDBSinkConnector.class);
 
   @Override
   public String version() {

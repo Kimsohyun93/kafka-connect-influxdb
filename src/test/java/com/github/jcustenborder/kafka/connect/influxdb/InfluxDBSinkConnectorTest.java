@@ -28,12 +28,12 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class InfluxDBSinkConnectorTest {
-  InfluxDBSinkConnector connector;
+  CustomInfluxDBSinkConnector connector;
   InfluxDB influxDB;
 
   @BeforeEach
   public void beforeEach() {
-    this.connector = new InfluxDBSinkConnector();
+    this.connector = new CustomInfluxDBSinkConnector();
     this.connector.factory = mock(InfluxDBFactory.class);
     this.influxDB = mock(InfluxDB.class);
     when(this.connector.factory.create(any())).thenReturn(this.influxDB);

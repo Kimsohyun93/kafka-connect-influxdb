@@ -75,7 +75,7 @@ The InfluxDBSinkConnector is used to write data from a Kafka topic to an InfluxD
 ```properties
 name=connector1
 tasks.max=1
-connector.class=com.github.jcustenborder.kafka.connect.influxdb.InfluxDBSinkConnector
+connector.class=com.github.jcustenborder.kafka.connect.influxdb.CustomInfluxDBSinkConnector
 # The following values must be configured.
 influxdb.database=
 influxdb.url=
@@ -87,7 +87,7 @@ influxdb.url=
 {
     "name": "connector1",
     "config": {
-        "connector.class": "com.github.jcustenborder.kafka.connect.influxdb.InfluxDBSinkConnector",
+        "connector.class": "com.github.jcustenborder.kafka.connect.influxdb.CustomInfluxDBSinkConnector",
         "influxdb.database":"",
         "influxdb.url":"",
     }
