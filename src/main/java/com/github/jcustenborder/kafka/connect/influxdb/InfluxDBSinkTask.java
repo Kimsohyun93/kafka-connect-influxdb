@@ -195,6 +195,8 @@ public class InfluxDBSinkTask extends SinkTask {
       if (null != values.getKey().tags || values.getKey().tags.isEmpty()) {
         builder.tag(values.getKey().tags);
         flattenData = values.getValue();
+        flattenData.put("applicationentity", values.getKey().measurement);
+        flattenData.put("container", values.getKey().tags);
       }
       builder.fields(values.getValue());
       Point point = builder.build();
