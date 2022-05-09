@@ -195,8 +195,6 @@ public class InfluxDBSinkTask extends SinkTask {
       if (null != values.getKey().tags || values.getKey().tags.isEmpty()) {
         builder.tag(values.getKey().tags);
         flattenData = values.getValue();
-        flattenData.put("ApplicationEntity", values.getKey().tags.get("ApplicationEntity"));
-        flattenData.put("container", values.getKey().tags.get("Container"));
       }
       builder.fields(values.getValue());
       Point point = builder.build();
@@ -206,8 +204,11 @@ public class InfluxDBSinkTask extends SinkTask {
       batchBuilder.point(point);
       Map<String, String> tmpTags = values.getKey().tags;
       String kafkaTopic = "refine." + tmpTags.get("ApplicationEntity") + "." + tmpTags.get("Container");
+      Map<String, Object> kafkaData = flattenData;
+      kafkaData.put("ApplicationEntity", values.getKey().tags.get("ApplicationEntity"));
+      kafkaData.put("container", values.getKey().tags.get("Container"));
       try {
-        producer.send(new ProducerRecord<String, String>(kafkaTopic, objectMapper.writeValueAsString(flattenData))); //topic, data
+        producer.send(new ProducerRecord<String, String>(kafkaTopic, objectMapper.writeValueAsString(kafkaData))); //topic, data
         System.out.println("Message sent successfully" + flattenData);
         producer.close();
       } catch (Exception e) {
