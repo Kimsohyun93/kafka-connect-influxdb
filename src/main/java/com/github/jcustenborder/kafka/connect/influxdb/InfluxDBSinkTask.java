@@ -75,28 +75,26 @@ public class InfluxDBSinkTask extends SinkTask {
     /**
      * Mobius CIN Return Data
      *
-     * {
-     *     "m2m:rce": {
-     *         "uri": "Mobius/kafka_ae/t_cnt2/4-202204050238413792316",
-     *         "m2m:cin": {
-     *             "rn": "4-202204050238413792316",
-     *             "ty": 4,
-     *             "pi": "3-20220404020617497645",
-     *             "ri": "4-20220405023841380700",
-     *             "ct": "20220405T023841",
-     *             "lt": "20220405T023841",
-     *             "st": 192,
-     *             "et": "20240405T023841",
-     *             "cs": 62,
-     *             "con": {
-     *                 "Latitude": 15.45243,
-     *                 "Longitude": 102.48484,
-     *                 "Altitude": 15.4545
-     *             },
-     *             "cr": "S20170717074825768bp2l"
-     *         }
-     *     }
-     * }
+     {"rn":"4-20220818041535428430",
+     "ty":"4",
+     "pi":"/Mobius/ae/cnt",
+     "ri":"/Mobius/ae/cnt/4-20220818041535428430",
+     "ct":"20220818T041535",
+     "lt":"20220818T041535",
+     "st":2,
+     "et":"20240818T041535",
+     "cs":"62",
+     "cnf":"",
+     "con":{"Latitude":16.45243,"Longitude":100.48484,"Altitude":13.4545},
+     "acpi":[],
+     "lbl":[],
+     "at":[],
+     "aa":[],
+     "subl":[],
+     "or":"",
+     "cr":"S20170717074825768bp2l",
+     "spi":"3-20220817050017027728",
+     "sri":"4-20220818041535429280"}
      */
     if (null == records || records.isEmpty()) {
       return;
@@ -106,37 +104,33 @@ public class InfluxDBSinkTask extends SinkTask {
     for (SinkRecord record : records) {
 
       Map<String, Object> jsonMap = (Map<String, Object>) record.value();
-      System.out.println("**************** \n \n \n \n \n \n****************** \n \n \n \n HERE \n **************** \n");
       System.out.println("THIS IS VALUE OF RECORDS : " + jsonMap);
 
-      Map<String, Object> rceData = (Map<String, Object>) jsonMap.get("m2m:rce");
-      String cinURI = (String) rceData.get("uri");
+      String cinURI = (String) jsonMap.get("pi");
       String[] uriArr = cinURI.split("/");
       String measurement = "timeseries";
       final Map<String, String> tags = new HashMap<String, String>();
-      tags.put("ApplicationEntity", uriArr[1]);
-      tags.put("Container", uriArr[2]);
+      tags.put("ApplicationEntity", uriArr[2]);
+      tags.put("Container", uriArr[3]);
       System.out.println("THIS IS VALUE OF CONTAINER : " + tags.toString());
 
       final long time = record.timestamp();
       PointKey key = PointKey.of(measurement, time, tags);
       Map<String, Object> fields = builders.computeIfAbsent(key, pointKey -> new HashMap<>(100));
 
-      Map<String, Object> dataField = (Map<String, Object>) rceData.get("m2m:cin");
-      System.out.println("THIS IS VALUE OF Data Fields : " + dataField);
       try {
         /**
          * flatten nested data field & Get Parsed Creation Time
          */
 
-        String creationTime = (String) dataField.get("ct");
+        String creationTime = (String) jsonMap.get("ct");
         SimpleDateFormat  dateParser  = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
         SimpleDateFormat  dateFormatter   = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date parsedTime = dateParser.parse(creationTime);
         creationTime = dateFormatter.format(parsedTime);
 
-        System.out.println("THIS IS CON STRING VALUE *** : " + dataField.get("con").toString());
-        String respData = objectMapper.writeValueAsString(dataField.get("con"));
+        System.out.println("THIS IS CON STRING VALUE *** : " + jsonMap.get("con").toString());
+        String respData = objectMapper.writeValueAsString(jsonMap.get("con"));
 
         JSONObject flattenedDataField = (JSONObject) jParser.parse(JsonFlattener.flatten(respData));
         flattenedDataField.put("creation_time", creationTime);
