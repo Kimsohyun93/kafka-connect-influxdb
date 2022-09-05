@@ -110,6 +110,7 @@ public class InfluxDBSinkTask extends SinkTask {
       String[] uriArr = cinURI.split("/");
       String measurement = "timeseries";
       final Map<String, String> tags = new HashMap<String, String>();
+      System.out.println("THIS IS VALUE OF cinURI , uriArr : " + cinURI + uriArr);
       tags.put("ApplicationEntity", uriArr[2]);
       tags.put("Container", uriArr[3]);
       System.out.println("THIS IS VALUE OF CONTAINER : " + tags.toString());
