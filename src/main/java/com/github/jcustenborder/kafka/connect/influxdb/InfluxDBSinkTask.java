@@ -45,7 +45,13 @@ import org.json.simple.parser.ParseException;
 
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 public class InfluxDBSinkTask extends SinkTask {
   private static final Logger log = LoggerFactory.getLogger(com.github.jcustenborder.kafka.connect.influxdb.InfluxDBSinkTask.class);
