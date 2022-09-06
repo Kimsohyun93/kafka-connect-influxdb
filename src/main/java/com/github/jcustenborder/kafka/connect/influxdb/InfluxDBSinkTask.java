@@ -45,12 +45,7 @@ import org.json.simple.parser.ParseException;
 
 
 import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayList;
-import java.util.Properties;
+import java.util.*;
 
 public class InfluxDBSinkTask extends SinkTask {
   private static final Logger log = LoggerFactory.getLogger(com.github.jcustenborder.kafka.connect.influxdb.InfluxDBSinkTask.class);
@@ -109,7 +104,7 @@ public class InfluxDBSinkTask extends SinkTask {
       String cinURI = (String) jsonMap.get("pi");
       System.out.println("THIS IS VALUE OF cinURI: " + cinURI );
       String[] uriArr = cinURI.split("/");
-      System.out.println("THIS IS VALUE OF uriArr : " + uriArr);
+      System.out.println("THIS IS VALUE OF uriArr : " + Arrays.toString(uriArr));
 
       String measurement = "timeseries";
       final Map<String, String> tags = new HashMap<String, String>();
