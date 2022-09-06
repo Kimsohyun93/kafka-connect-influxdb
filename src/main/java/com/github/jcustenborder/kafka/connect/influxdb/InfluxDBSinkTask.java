@@ -104,7 +104,7 @@ public class InfluxDBSinkTask extends SinkTask {
     for (SinkRecord record : records) {
 
       Map<String, Object> jsonMap = (Map<String, Object>) record.value();
-      System.out.println("THIS IS VALUE OF RECORDS : " + jsonMap);
+      System.out.println("THIS IS VALUE OF RECORDS1111 : " + jsonMap);
 
       String cinURI = (String) jsonMap.get("pi");
       System.out.println("THIS IS VALUE OF cinURI: " + cinURI);
