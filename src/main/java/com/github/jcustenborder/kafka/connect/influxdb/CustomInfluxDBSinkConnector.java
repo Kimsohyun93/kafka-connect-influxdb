@@ -39,7 +39,7 @@ public class CustomInfluxDBSinkConnector extends SinkConnector {
   @Override
   public String version() {
     //return VersionUtil.version(this.getClass());
-    return "1.0.0";
+    return "1.0.1";
   }
 
   Map<String, String> settings;
