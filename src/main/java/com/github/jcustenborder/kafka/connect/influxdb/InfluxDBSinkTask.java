@@ -104,22 +104,18 @@ public class InfluxDBSinkTask extends SinkTask {
     for (SinkRecord record : records) {
 
       Map<String, Object> jsonMap = (Map<String, Object>) record.value();
-      System.out.println("##############################HERE");
-      System.out.println("THIS IS VALUE OF RECORDS1111 : " + jsonMap);
+      System.out.println("##############################\n\nHERE\n\n##############################");
+      System.out.println("THIS IS VALUE OF RECORDS : " + jsonMap);
 
       String cinURI = (String) jsonMap.get("pi");
       System.out.println("THIS IS VALUE OF cinURI: " + cinURI);
       String[] uriArr = cinURI.split("/");
-      // System.out.println("THIS IS VALUE OF uriArr : " + Arrays.toString(uriArr));
 
       String measurement = "timeseries";
       final Map<String, String> tags = new HashMap<String, String>();
 
-
       tags.put("ApplicationEntity", uriArr[2]);
       tags.put("Container", uriArr[3]);
-      System.out.println("THIS IS VALUE OF CONTAINER : " + tags.toString());
-
       final long time = record.timestamp();
       PointKey key = PointKey.of(measurement, time, tags);
       Map<String, Object> fields = builders.computeIfAbsent(key, pointKey -> new HashMap<>(100));
