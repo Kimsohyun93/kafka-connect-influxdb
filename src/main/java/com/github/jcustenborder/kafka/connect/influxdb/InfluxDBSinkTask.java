@@ -15,12 +15,8 @@
  */
 package com.github.jcustenborder.kafka.connect.influxdb;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.jcustenborder.kafka.connect.utils.VersionUtil;
-import com.github.wnameless.json.flattener.JsonFlattener;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -29,25 +25,20 @@ import org.apache.kafka.connect.data.SchemaBuilder;
 import org.apache.kafka.connect.sink.SinkRecord;
 import org.apache.kafka.connect.sink.SinkTask;
 import org.influxdb.InfluxDB;
+
 import org.influxdb.dto.BatchPoints;
 import org.influxdb.dto.Point;
-
-import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 
+import org.w3c.dom.ranges.RangeException;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
-import org.json.simple.parser.JSONParser;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
-
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -59,6 +50,17 @@ public class InfluxDBSinkTask extends SinkTask {
   InfluxDB influxDB;
   ObjectMapper objectMapper = new ObjectMapper();
 
+  JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+  JedisPool pool = new JedisPool(jedisPoolConfig, "localhost", 6379, 3000);
+  Jedis jedis;
+
+
+  /*
+   * For Kafka Produce
+   */
+  Properties props = new Properties();
+  Producer<String, String> producer;
+
   @Override
   public String version() {
     return VersionUtil.version(this.getClass());
@@ -68,120 +70,184 @@ public class InfluxDBSinkTask extends SinkTask {
   public void start(Map<String, String> settings) {
     this.config = new InfluxDBSinkConnectorConfig(settings);
     this.influxDB = this.factory.create(this.config);
+    jedis = pool.getResource(); //thread, db pool처럼 필요할 때마다 getResource()로 받아서 쓰고 다 쓰면 close로 닫아야 한다.s
+
+    this.props.put("bootstrap.servers", "localhost:9092");
+    this.props.put("acks", "all");
+    this.props.put("retries", 0);
+    this.props.put("batch.size", 16384);
+    this.props.put("linger.ms", 1);
+    this.props.put("buffer.memory", 33554432);
+    this.props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+    this.props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+    this.producer = new KafkaProducer<String, String>(this.props);
   }
+
   static final Schema TAG_OPTIONAL_SCHEMA = SchemaBuilder.map(Schema.STRING_SCHEMA, Schema.STRING_SCHEMA).optional().build();
+
   @Override
   public void put(Collection<SinkRecord> records) {
-    /**
-     * Mobius CIN Return Data
-     *
-     {"rn":"4-20220818041535428430",
-     "ty":"4",
-     "pi":"/Mobius/ae/cnt",
-     "ri":"/Mobius/ae/cnt/4-20220818041535428430",
-     "ct":"20220818T041535",
-     "lt":"20220818T041535",
-     "st":2,
-     "et":"20240818T041535",
-     "cs":"62",
-     "cnf":"",
-     "con":{"Latitude":16.45243,"Longitude":100.48484,"Altitude":13.4545},
-     "acpi":[],
-     "lbl":[],
-     "at":[],
-     "aa":[],
-     "subl":[],
-     "or":"",
-     "cr":"S20170717074825768bp2l",
-     "spi":"3-20220817050017027728",
-     "sri":"4-20220818041535429280"}
-     */
     if (null == records || records.isEmpty()) {
       return;
     }
-    JSONParser jParser = new JSONParser();
     Map<PointKey, Map<String, Object>> builders = new HashMap<>(records.size());
     for (SinkRecord record : records) {
 
-      Map<String, Object> jsonMap = (Map<String, Object>) record.value();
+      //Sink Record Parsing
+      Map<String, Object> conJson = (Map<String, Object>) record.value();
+      String recordKey = record.key().toString();
+      String[] pi = recordKey.split("/");
+      String ae = pi[2], cnt = pi[3];
       System.out.println("##############################\n\nHERE\n\n##############################");
-      System.out.println("THIS IS VALUE OF RECORDS : " + jsonMap);
+      System.out.printf("THIS IS RECORDS [AE] %s, [CNT] %s, [CON] %s %n", ae, cnt, conJson);
+      String measurement = ae;
 
-      String cinURI = (String) jsonMap.get("pi");
-      System.out.println("THIS IS VALUE OF cinURI: " + cinURI);
-      String[] uriArr = cinURI.split("/");
+      Boolean errorFlag = false;
+      Map<String, Object> kafkaData = new HashMap<>();
 
-      String measurement = "timeseries";
+
       final Map<String, String> tags = new HashMap<String, String>();
-
-      tags.put("ApplicationEntity", uriArr[2]);
-      tags.put("Container", uriArr[3]);
+      tags.put("Container", cnt);
       final long time = record.timestamp();
       PointKey key = PointKey.of(measurement, time, tags);
-      Map<String, Object> fields = builders.computeIfAbsent(key, pointKey -> new HashMap<>(100));
+      PointKey errorKey = PointKey.of("error", time, tags);
 
-      try {
-        /**
-         * flatten nested data field & Get Parsed Creation Time
-         */
+      String path = String.format("/%s/%s", ae, cnt);
+      Map<String, String> dataModel = new HashMap<>();
+      String dm = jedis.hget("datamodel", path);  //{\"field1\":\"string\",\"field2\":\"float\"}
+      System.out.println("THIS IS DM : " + dm);
 
-        String creationTime = (String) jsonMap.get("ct");
-        SimpleDateFormat  dateParser  = new SimpleDateFormat("yyyyMMdd'T'HHmmss");
-        SimpleDateFormat  dateFormatter   = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date parsedTime = dateParser.parse(creationTime);
-        creationTime = dateFormatter.format(parsedTime);
+      ArrayList<String> fieldKeys = new ArrayList<String>(conJson.keySet());
 
-        System.out.println("THIS IS CON STRING VALUE *** : " + jsonMap.get("con").toString());
-        String respData = objectMapper.writeValueAsString(jsonMap.get("con"));
-
-        JSONObject flattenedDataField = (JSONObject) jParser.parse(JsonFlattener.flatten(respData));
-        flattenedDataField.put("creation_time", creationTime);
-        System.out.println("THIS IS VALUE OF FLATTENED JSON : " + flattenedDataField);
-
-        ArrayList<String> fieldKeys = new ArrayList<String>(flattenedDataField.keySet());
-        System.out.println("THIS IS VALUE OF Data Fields KEY SET : " + flattenedDataField.keySet());
-
+      if (dm == null) {
+        // type Float, String으로 자동 추론
+        Map<String, Object> fields = builders.computeIfAbsent(key, pointKey -> new HashMap<>(100));
         for (String fieldKey : fieldKeys) {
-          String dataType = flattenedDataField.get(fieldKey).getClass().getSimpleName();
-          Object o = flattenedDataField.get(fieldKey);
-          System.out.println("THIS IS VALUE OF Data Fields : " + dataType + fieldKey + String.valueOf(o));
+          Object o = conJson.get(fieldKey);
+          String dataType = o.getClass().getSimpleName();
 
-          if (o instanceof String || o instanceof Character || o instanceof Boolean || o instanceof JSONObject || o instanceof JSONArray) {
-            fields.put(fieldKey, String.valueOf(o));
-          } else if (o instanceof Byte || o instanceof Short || o instanceof Integer || o instanceof Long || o instanceof Double || o instanceof Float) {
-            fields.put(fieldKey, Double.valueOf(String.valueOf(o)));
+          String fieldName = String.format("%s.%s.%s", ae, cnt, fieldKey);
+
+          if (dataType.equals("Byte") || dataType.equals("Short") || dataType.equals("Integer") || dataType.equals("Long") || dataType.equals("Double") || dataType.equals("Float")) {
+            System.out.printf("1.IF ========== THIS IS VALUE OF Data Fields : %s %s %s%n", dataType, fieldKey, o);
+//            fields.put(fieldName, Double.valueOf(String.valueOf(o)));
+            fields.put(fieldName, o);
           } else {
-            fields.put(fieldKey, String.valueOf(o));
+            System.out.printf("1.else ======== THIS IS VALUE OF Data Fields : %s %s %s%n", dataType, fieldKey, o);
+            fields.put(fieldName, String.valueOf(o));
           }
         }
-      } catch (ParseException e) {
-        e.printStackTrace();
-      } catch (java.text.ParseException e) {
-        e.printStackTrace();
-      } catch (JsonMappingException e) {
-        e.printStackTrace();
-      } catch (JsonParseException e) {
-        e.printStackTrace();
-      } catch (JsonProcessingException e) {
-        e.printStackTrace();
-      } catch (IOException e) {
-        e.printStackTrace();
+      } else {
+        dm = dm.replaceAll("[{}\"]", "");
+        String[] splitdm = dm.split(",");
+        for (String s1 : splitdm) {
+          String[] keyValue = s1.split(":");
+          dataModel.put(keyValue[0], keyValue[1]);
+        }
+        
+        ArrayList<String> dmKeySet = new ArrayList<String>(dataModel.keySet());
+
+        System.out.println(dmKeySet);
+        System.out.println(fieldKeys);
+        System.out.println(fieldKeys == dmKeySet);
+        System.out.println(fieldKeys.equals(dmKeySet));
+
+        if (fieldKeys.equals(dmKeySet)) {
+          Map<String, Object> fields = builders.computeIfAbsent(key, pointKey -> new HashMap<>(100));
+          System.out.println("데이터 KeySet이 모델과 같은 경우");
+
+          //유효성 검증 (parse가 안되는 경우)
+          for (String fieldKey : fieldKeys) {
+            Object o = conJson.get(fieldKey);
+            Object dmO = dataModel.get(fieldKey);
+            String fieldName = String.format("%s.%s.%s", ae, cnt, fieldKey);
+            try {
+              if (dmO.equals("string")) {
+                fields.put(fieldName, String.valueOf(o));
+              } else if (dmO.equals("float")) {
+                fields.put(fieldName, Double.valueOf(String.valueOf(o)));
+              } else if (dmO.equals("integer")) {
+                fields.put(fieldName, Long.valueOf(String.valueOf(o)));
+              } else if (dmO.equals("boolean")) {
+                fields.put(fieldName, Boolean.valueOf(String.valueOf(o)));
+              }
+            } catch (NumberFormatException | RangeException e) {
+              builders.remove(key);
+              Map<String, Object> errfields = builders.computeIfAbsent(errorKey, pointKey -> new HashMap<>(100));
+              System.out.println("데이터의 타입이 모델과 다른 경우");
+              errfields.put("ApplicationEntity", ae);
+              errfields.put("record", conJson.toString());
+              errfields.put("datamodel", dataModel.toString());
+              errfields.put("errorMessage", "The data type is different from the model.");
+              errorFlag = true;
+            }
+          }
+
+
+        } else {
+          fieldKeys.retainAll(dmKeySet); // dmKeyset과 fieldKeys와의 교집합만을 남겨둠
+          if (fieldKeys.equals(dmKeySet)) { // keyset이 더 많은 경우
+            Map<String, Object> fields = builders.computeIfAbsent(key, pointKey -> new HashMap<>(100));
+            System.out.println("데이터의 KeySet이 데이터 모델보다 더 많은 경우");
+            // 유효성 검증
+
+            for (String fieldKey : fieldKeys) {
+              Object o = conJson.get(fieldKey);
+              Object dmO = dataModel.get(fieldKey);
+              String fieldName = String.format("%s.%s.%s", ae, cnt, fieldKey);
+              kafkaData.put(fieldKey, o);
+              try {
+                if (dmO.equals("string")) {
+                  fields.put(fieldName, String.valueOf(o));
+                } else if (dmO.equals("float")) {
+                  fields.put(fieldName, Double.valueOf(String.valueOf(o)));
+                } else if (dmO.equals("integer")) {
+                  fields.put(fieldName, Long.valueOf(String.valueOf(o)));
+                } else if (dmO.equals("boolean")) {
+                  fields.put(fieldName, Boolean.valueOf(String.valueOf(o)));
+                }
+              } catch (NumberFormatException | RangeException e) {
+                builders.remove(key);
+                Map<String, Object> errfields = builders.computeIfAbsent(errorKey, pointKey -> new HashMap<>(100));
+                System.out.println("데이터의 타입이 모델과 다른 경우");
+                errfields.put("ApplicationEntity", ae);
+                errfields.put("record", conJson.toString());
+                errfields.put("datamodel", dataModel.toString());
+                errfields.put("errorMessage", "The data type is different from the model.");
+                errorFlag = true;
+              }
+            }
+
+          } else { // keyset이 더 적은 경우
+            Map<String, Object> errfields = builders.computeIfAbsent(errorKey, pointKey -> new HashMap<>(100));
+            System.out.println("데이터의 KeySet이 데이터 모델보다 더 적은 경우");
+            errfields.put("ApplicationEntity", ae);
+            errfields.put("record", conJson.toString());
+            errfields.put("datamodel", dataModel.toString());
+            errfields.put("errorMessage", "The data field is different from the model.");
+            errorFlag = true;
+            // error
+          }
+        }
       }
+
+      if (!errorFlag) {
+        // Produce Kafka Data
+        String kafkaTopic = String.format("refine.%s.%s", ae, cnt);
+        if (kafkaData.isEmpty()) {
+          kafkaData = conJson;
+        }
+        try {
+          this.producer.send(new ProducerRecord<String, String>(kafkaTopic, recordKey, objectMapper.writeValueAsString(kafkaData))); //topic, data
+          System.out.println("Message sent successfully" + kafkaData);
+        } catch (Exception e) {
+          System.out.println("Kafka Produce Exception : " + e);
+        }
+      }
+
+
     }
-    /*
-     * For Kafka Produce (Flatten Data)
-     */
-    Properties props = new Properties();
-    props.put("bootstrap.servers", "localhost:9092");
-    props.put("acks", "all");
-    props.put("retries", 0);
-    props.put("batch.size", 16384);
-    props.put("linger.ms", 1);
-    props.put("buffer.memory", 33554432);
-    props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-    props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-    Producer<String, String> producer = new KafkaProducer<String, String>(props);
-    Map<String, Object> flattenData = null;
+
 
     BatchPoints.Builder batchBuilder = BatchPoints.database(this.config.database).consistency(this.config.consistencyLevel);
 
@@ -190,7 +256,6 @@ public class InfluxDBSinkTask extends SinkTask {
       builder.time(values.getKey().time, this.config.precision);
       if (null != values.getKey().tags || values.getKey().tags.isEmpty()) {
         builder.tag(values.getKey().tags);
-        flattenData = values.getValue();
       }
       builder.fields(values.getValue());
       Point point = builder.build();
@@ -198,29 +263,26 @@ public class InfluxDBSinkTask extends SinkTask {
         log.trace("put() - Adding point {}", point.toString());
       }
       batchBuilder.point(point);
-      Map<String, String> tmpTags = values.getKey().tags;
-      String kafkaTopic = "refine." + tmpTags.get("ApplicationEntity") + "." + tmpTags.get("Container");
-      Map<String, Object> kafkaData = flattenData;
-      kafkaData.put("ApplicationEntity", values.getKey().tags.get("ApplicationEntity"));
-      kafkaData.put("container", values.getKey().tags.get("Container"));
-      try {
-        producer.send(new ProducerRecord<String, String>(kafkaTopic, objectMapper.writeValueAsString(kafkaData))); //topic, data
-        System.out.println("Message sent successfully" + flattenData);
-        producer.close();
-      } catch (Exception e) {
-        System.out.println("Kafka Produce Exception : " + e);
-      }
-
     }
     BatchPoints batch = batchBuilder.build();
     this.influxDB.write(batch);
   }
+
 
   @Override
   public void stop() {
     if (null != this.influxDB) {
       log.info("stop() - Closing InfluxDB client.");
       this.influxDB.close();
+    }
+    if (null != this.jedis) {
+      log.info("stop() - Closing Jedis client.");
+      this.jedis.close();
+    }
+    this.pool.close();
+    if (null != this.producer) {
+      log.info("stop() - Closing Kafka Producer.");
+      this.producer.close();
     }
   }
 }
