@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="954af2d9-ad2c-4c26-bcc0-a37c3e96d383" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/node_modules.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/components/Configuration.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/components/Configuration.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/components/Drawer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/components/Drawer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/components/StreamManagement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/components/StreamManagement.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/components/module/CompactList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/components/module/CompactList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/components/module/ResourceList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/components/module/ResourceList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/compact-list.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/compact-list.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/configuration.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/configuration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/drawer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/drawer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/resource-count.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/resource-count.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/resource-list.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/resource-list.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/stream-management.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/stream-management.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/style/stream-management.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/style/stream-management.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/configuration/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/server/configuration/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/server/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/public/static/css/app.6824828b85001aa3264897d3ecbba0cb.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/public/static/css/app.6824828b85001aa3264897d3ecbba0cb.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/public/static/js/app.f1ce2f1d9d2404592b10.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/public/static/js/app.f1ce2f1d9d2404592b10.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/public/static/js/manifest.2ae2e69a05c33dfc65f8.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/server/public/static/js/manifest.2ae2e69a05c33dfc65f8.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/public/static/js/vendor.81ff3c534fdf3ab8802a.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/public/static/js/vendor.81ff3c534fdf3ab8802a.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/routes/resources.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/server/routes/resources.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/routes/stream_management.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/server/routes/stream_management.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../BadaV2/test1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MobiusV2/ca-crt.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/ca-crt.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MobiusV2/conf.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/conf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MobiusV2/mobius.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/mobius.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MobiusV2/mobius/resource.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/mobius/resource.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MobiusV2/mobius/sgn_man.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/mobius/sgn_man.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MobiusV2/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MobiusV2/server-crt.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/server-crt.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../MobiusV2/server-key.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/server-key.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../sql/mobiusdb.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../sql/mobiusdb.sql" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="kafka-sink-connect-influxdb-gradle" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="kafka-sink-connect-influxdb-gradle" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="kafka-sink-connect-influxdb-gradle" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="kafka-sink-connect-influxdb-gradle" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2RmH2ju4aJmYg0oNBqL2gvViRUs" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+  </component>
+  <component name="RunManager" selected="Gradle.kafka-sink-connect-influxdb-gradle [jar]">
+    <configuration name="kafka-sink-connect-influxdb-gradle [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="kafka-sink-connect-influxdb-gradle [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="kafka-sink-connect-influxdb-gradle [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="kafka-sink-connect-influxdb-gradle" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.kafka-sink-connect-influxdb-gradle" />
+      <item itemvalue="Gradle.kafka-sink-connect-influxdb-gradle [jar]" />
+      <item itemvalue="Gradle.kafka-sink-connect-influxdb-gradle [clean]" />
+      <item itemvalue="Gradle.kafka-sink-connect-influxdb-gradle [build]" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.kafka-sink-connect-influxdb-gradle [jar]" />
+        <item itemvalue="Gradle.kafka-sink-connect-influxdb-gradle [build]" />
+        <item itemvalue="Gradle.kafka-sink-connect-influxdb-gradle [clean]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="954af2d9-ad2c-4c26-bcc0-a37c3e96d383" name="Changes" comment="" />
+      <created>1687848133280</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1687848133280</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
