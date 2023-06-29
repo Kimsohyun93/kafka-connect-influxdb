@@ -40,12 +40,18 @@
       <change beforePath="$PROJECT_DIR$/../../MobiusV2/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../MobiusV2/server-crt.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/server-crt.pem" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../MobiusV2/server-key.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/server-key.pem" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/platform/bada/v2/kafka/connect/influxdb/InfluxDBSinkTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/platform/bada/v2/kafka/connect/influxdb/InfluxDBSinkTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/platform/bada/v2/kafka/connect/influxdb/InfluxDBSinkTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/platform/bada/v2/kafka/connect/influxdb/InfluxDBSinkTask.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/kafka-sink-connect-influxdb-gradle-2.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/kafka-sink-connect-influxdb-gradle-2.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../sql/mobiusdb.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../sql/mobiusdb.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
