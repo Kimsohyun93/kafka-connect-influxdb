@@ -1,6 +1,8 @@
 package platform.bada.v2.kafka.connect.influxdb;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.wnameless.json.flattener.JsonFlattener;
 import com.google.common.base.Strings;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
@@ -12,6 +14,9 @@ import org.apache.kafka.connect.sink.SinkTask;
 import org.influxdb.InfluxDB;
 import org.influxdb.dto.BatchPoints;
 import org.influxdb.dto.Point;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.ranges.RangeException;
@@ -97,6 +102,7 @@ public class InfluxDBSinkTask extends SinkTask {
     if (null == records || records.isEmpty()) {
       return;
     }
+    JSONParser jParser = new JSONParser();
     Map<PointKey, Map<String, Object>> builders = new HashMap<>(records.size());
     for (SinkRecord record : records) {
 
@@ -121,10 +127,24 @@ public class InfluxDBSinkTask extends SinkTask {
       ArrayList<String> fieldKeys = new ArrayList<>(conJson.keySet());
 
       if (dm == null) {
+
+        /*
+         * data flatten
+         */
+
+        JSONObject flattenedData = null;
+        try {
+          String respData = objectMapper.writeValueAsString(conJson);
+          flattenedData = (JSONObject) jParser.parse(JsonFlattener.flatten(respData));
+        } catch (ParseException | JsonProcessingException e) {
+          e.printStackTrace();
+        }
+        fieldKeys = new ArrayList<>(flattenedData.keySet());
+
         // type Float, String으로 자동 추론
         Map<String, Object> fields = builders.computeIfAbsent(key, pointKey -> new HashMap<>(100));
         for (String fieldKey : fieldKeys) {
-          Object o = conJson.get(fieldKey);
+          Object o = flattenedData.get(fieldKey);
           String fieldName = String.format("%s.%s.%s", ae, cnt, fieldKey);
 
           //String dataType = o.getClass().getSimpleName();

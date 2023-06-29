@@ -40,6 +40,12 @@
       <change beforePath="$PROJECT_DIR$/../../MobiusV2/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../MobiusV2/server-crt.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/server-crt.pem" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../MobiusV2/server-key.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/server-key.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/platform/bada/v2/kafka/connect/influxdb/InfluxDBSinkTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/platform/bada/v2/kafka/connect/influxdb/InfluxDBSinkTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../sql/mobiusdb.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../sql/mobiusdb.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
