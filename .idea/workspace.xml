@@ -5,54 +5,230 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="954af2d9-ad2c-4c26-bcc0-a37c3e96d383" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/node_modules.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/components/Configuration.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/components/Configuration.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/components/Drawer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/components/Drawer.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/components/StreamManagement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/components/StreamManagement.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/components/module/CompactList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/components/module/CompactList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/components/module/ResourceList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/components/module/ResourceList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/compact-list.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/compact-list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/configuration.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/configuration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/drawer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/drawer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/resource-count.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/resource-count.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/resource-list.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/resource-list.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/stream-management.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/controllers/stream-management.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/client/src/style/stream-management.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/client/src/style/stream-management.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/configuration/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/server/configuration/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/server/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/public/static/css/app.6824828b85001aa3264897d3ecbba0cb.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/public/static/css/app.6824828b85001aa3264897d3ecbba0cb.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/public/static/js/app.f1ce2f1d9d2404592b10.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/public/static/js/app.f1ce2f1d9d2404592b10.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/public/static/js/manifest.2ae2e69a05c33dfc65f8.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/server/public/static/js/manifest.2ae2e69a05c33dfc65f8.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/public/static/js/vendor.81ff3c534fdf3ab8802a.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/public/static/js/vendor.81ff3c534fdf3ab8802a.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/routes/resources.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/server/routes/resources.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/server/routes/stream_management.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../BadaV2/server/routes/stream_management.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/test.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../BadaV2/test1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../MobiusV2/ca-crt.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/ca-crt.pem" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../MobiusV2/conf.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/conf.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../MobiusV2/mobius.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/mobius.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../MobiusV2/mobius/resource.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/mobius/resource.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../MobiusV2/mobius/sgn_man.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/mobius/sgn_man.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../MobiusV2/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../MobiusV2/server-crt.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/server-crt.pem" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../MobiusV2/server-key.pem" beforeDir="false" afterPath="$PROJECT_DIR$/../../MobiusV2/server-key.pem" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/google-java-format.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/assembly/development.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/assembly/package.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/assembly/standalone.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/JdbcSinkConnector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/dialect/DatabaseDialect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/dialect/DatabaseDialectProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/dialect/DatabaseDialects.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/dialect/Db2DatabaseDialect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/dialect/DerbyDatabaseDialect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/dialect/DropOptions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/dialect/GenericDatabaseDialect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/dialect/MySqlDatabaseDialect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/dialect/OracleDatabaseDialect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/dialect/PostgreSqlDatabaseDialect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/dialect/SapHanaDatabaseDialect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/dialect/SqlServerDatabaseDialect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/dialect/SqliteDatabaseDialect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/dialect/SybaseDatabaseDialect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/dialect/VerticaDatabaseDialect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/sink/BufferedRecords.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/sink/DbStructure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/sink/JdbcDbWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/sink/JdbcSinkConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/sink/JdbcSinkTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/sink/PreparedStatementBinder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/sink/RecordValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/sink/TableAlterOrCreateException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/sink/metadata/FieldsMetadata.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/sink/metadata/SchemaPair.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/sink/metadata/SinkRecordField.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/source/BulkTableQuerier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/source/ColumnMapping.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/source/JdbcSourceConnectorConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/source/JdbcSourceConnectorConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/source/JdbcSourceTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/source/JdbcSourceTaskConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/source/OffsetProtocols.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/source/SchemaMapping.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/source/TableMonitorThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/source/TableQuerier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/source/TimestampIncrementingCriteria.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/source/TimestampIncrementingOffset.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/source/TimestampIncrementingTableQuerier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/source/TimestampTableQuerier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/BytesUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/CachedConnectionProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/ColumnDefinition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/ColumnId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/ConfigUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/ConnectionProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/DatabaseDialectRecommender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/DateTimeUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/DeleteEnabledRecommender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/EnumRecommender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/ExpressionBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/IdentifierRules.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/JdbcDriverInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/LruCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/PrimaryKeyModeRecommender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/QuoteMethod.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/StringUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/TableDefinition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/TableDefinitions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/TableId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/TableType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/TimeZoneValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/java/platform/bada/v2/kafka/connect/postgresql/util/Version.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/resources/META-INF/services/platform.bada.v2.kafka.connect.postgresql.dialect.DatabaseDialectProvider" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/src/main/resources/kafka-connect-jdbc-version.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/platform/bada/v2/kafka/connect/influxdb/InfluxDBSinkTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/platform/bada/v2/kafka/connect/influxdb/InfluxDBSinkTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/kafka-sink-connect-influxdb-gradle-2.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/kafka-sink-connect-influxdb-gradle-2.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/reports/tests/test/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../sql/mobiusdb.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../sql/mobiusdb.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__cglib_cglib_nodep_2_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__ch_vorburger_exec_exec_3_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__ch_vorburger_mariaDB4j_mariaDB4j_2_4_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__ch_vorburger_mariaDB4j_mariaDB4j_core_2_4_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__ch_vorburger_mariaDB4j_mariaDB4j_db_linux64_10_2_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__ch_vorburger_mariaDB4j_mariaDB4j_db_mac64_10_2_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__ch_vorburger_mariaDB4j_mariaDB4j_db_win32_10_2_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_101tec_zkclient_0_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_annotations_2_12_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_12_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_databind_2_12_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_fasterxml_jackson_dataformat_jackson_dataformat_csv_2_12_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_fasterxml_jackson_datatype_jackson_datatype_jdk8_2_12_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_fasterxml_jackson_jaxrs_jackson_jaxrs_base_2_12_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_fasterxml_jackson_jaxrs_jackson_jaxrs_json_provider_2_12_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_fasterxml_jackson_module_jackson_module_jaxb_annotations_2_12_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_fasterxml_jackson_module_jackson_module_scala_2_13_2_12_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_github_docker_java_docker_java_api_3_2_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_github_docker_java_docker_java_transport_3_2_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_github_docker_java_docker_java_transport_zerodep_3_2_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_github_luben_zstd_jni_1_4_4_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_microsoft_sqlserver_mssql_jdbc_8_4_1_jre8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_oracle_database_jdbc_ojdbc8_production_pom_19_7_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_thoughtworks_paranamer_paranamer_2_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_typesafe_scala_logging_scala_logging_2_13_3_9_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__com_yammer_metrics_metrics_core_2_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__commons_cli_commons_cli_1_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__commons_codec_commons_codec_1_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__commons_io_commons_io_2_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__commons_io_commons_io_2_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__io_confluent_confluent_log4j_1_2_17_cp2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__io_netty_netty_buffer_4_1_48_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__io_netty_netty_codec_4_1_48_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__io_netty_netty_common_4_1_48_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__io_netty_netty_handler_4_1_48_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__io_netty_netty_resolver_4_1_48_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__io_netty_netty_transport_4_1_48_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__io_netty_netty_transport_native_epoll_4_1_48_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__io_netty_netty_transport_native_unix_common_4_1_48_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__io_zonky_test_embedded_postgres_1_2_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__io_zonky_test_postgres_embedded_postgres_binaries_darwin_amd64_10_11_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__io_zonky_test_postgres_embedded_postgres_binaries_linux_amd64_10_11_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__io_zonky_test_postgres_embedded_postgres_binaries_linux_amd64_alpine_10_11_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__io_zonky_test_postgres_embedded_postgres_binaries_windows_amd64_10_11_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__jakarta_activation_jakarta_activation_api_1_2_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__jakarta_annotation_jakarta_annotation_api_1_3_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__jakarta_validation_jakarta_validation_api_2_0_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__jakarta_ws_rs_jakarta_ws_rs_api_2_1_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__jakarta_xml_bind_jakarta_xml_bind_api_2_3_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__javax_activation_activation_1_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__javax_servlet_javax_servlet_api_3_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__javax_ws_rs_javax_ws_rs_api_2_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__javax_xml_bind_jaxb_api_2_3_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__junit_junit_4_13_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__log4j_log4j_1_2_17.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__net_java_dev_jna_jna_5_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__net_sf_jopt_simple_jopt_simple_5_0_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__net_sourceforge_argparse4j_argparse4j_0_7_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__net_sourceforge_jtds_jtds_1_3_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apache_commons_commons_collections4_4_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apache_commons_commons_compress_1_21.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apache_commons_commons_exec_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apache_commons_commons_lang3_3_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apache_derby_derby_10_14_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apache_kafka_connect_api_6_0_0_ccs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apache_kafka_connect_json_6_0_0_ccs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apache_kafka_connect_runtime_6_0_0_ccs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apache_kafka_connect_transforms_6_0_0_ccs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apache_kafka_kafka_2_13_6_0_0_ccs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apache_kafka_kafka_clients_6_0_0_ccs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apache_kafka_kafka_log4j_appender_6_0_0_ccs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apache_kafka_kafka_tools_6_0_0_ccs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apache_maven_maven_artifact_3_6_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apache_yetus_audience_annotations_0_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apache_zookeeper_zookeeper_3_5_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apache_zookeeper_zookeeper_jute_3_5_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_apiguardian_apiguardian_api_1_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_checkerframework_checker_qual_3_5_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_codehaus_plexus_plexus_utils_3_2_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_easymock_easymock_3_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_eclipse_jetty_jetty_client_9_4_24_v20191120.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_eclipse_jetty_jetty_continuation_9_4_24_v20191120.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_eclipse_jetty_jetty_http_9_4_24_v20191120.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_eclipse_jetty_jetty_io_9_4_24_v20191120.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_eclipse_jetty_jetty_security_9_4_24_v20191120.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_eclipse_jetty_jetty_server_9_4_24_v20191120.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_eclipse_jetty_jetty_servlet_9_4_24_v20191120.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_eclipse_jetty_jetty_servlets_9_4_24_v20191120.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_eclipse_jetty_jetty_util_9_4_24_v20191120.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_glassfish_hk2_external_aopalliance_repackaged_2_6_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_glassfish_hk2_external_jakarta_inject_2_6_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_glassfish_hk2_hk2_api_2_6_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_glassfish_hk2_hk2_locator_2_6_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_glassfish_hk2_hk2_utils_2_6_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_glassfish_hk2_osgi_resource_locator_1_0_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_glassfish_jersey_containers_jersey_container_servlet_2_30.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_glassfish_jersey_containers_jersey_container_servlet_core_2_30.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_glassfish_jersey_core_jersey_client_2_30.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_glassfish_jersey_core_jersey_common_2_30.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_glassfish_jersey_core_jersey_server_2_30.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_glassfish_jersey_inject_jersey_hk2_2_30.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_glassfish_jersey_media_jersey_media_jaxb_2_30.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_javassist_javassist_3_26_0_GA.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_jetbrains_annotations_17_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_api_5_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_junit_jupiter_junit_jupiter_engine_5_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_junit_platform_junit_platform_commons_1_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_junit_platform_junit_platform_engine_1_8_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_lz4_lz4_java_1_7_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_mariadb_jdbc_mariadb_java_client_2_5_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_mockito_mockito_all_1_9_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_objenesis_objenesis_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_postgresql_postgresql_42_3_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_powermock_powermock_api_easymock_1_6_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_powermock_powermock_api_support_1_6_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_powermock_powermock_core_1_6_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_powermock_powermock_module_junit4_1_6_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_powermock_powermock_module_junit4_common_1_6_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_powermock_powermock_reflect_1_6_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_reflections_reflections_0_9_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_rnorth_duct_tape_duct_tape_1_0_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_scala_lang_modules_scala_collection_compat_2_13_2_1_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_scala_lang_modules_scala_java8_compat_2_13_0_9_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_scala_lang_scala_library_2_13_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_scala_lang_scala_reflect_2_13_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_slf4j_slf4j_api_1_7_30.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_slf4j_slf4j_api_1_7_32.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_slf4j_slf4j_log4j12_1_7_30.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_springframework_spring_core_5_1_4_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_springframework_spring_jcl_5_1_4_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_testcontainers_database_commons_1_16_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_testcontainers_jdbc_1_16_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_testcontainers_oracle_xe_1_16_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_testcontainers_testcontainers_1_16_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_tukaani_xz_1_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_xerial_snappy_snappy_java_1_1_7_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/libraries/Gradle__org_xerial_sqlite_jdbc_3_25_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/modules/kafka-sink-connect-postgresql-gradle.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/modules/kafka-sink-connect-postgresql-gradle.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/modules/kafka-sink-connect-postgresql-gradle.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/modules/kafka-sink-connect-postgresql-gradle.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/modules/kafka-sink-connect-postgresql-gradle.test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kafka-sink-connect-postgresql-gradle/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +271,12 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="kafka-sink-connect-influxdb-gradle" type="f1a62948:ProjectNode" />
                 <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="kafka-sink-connect-influxdb-gradle" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="runtimeClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
               </path>
             </expand>
             <select />
